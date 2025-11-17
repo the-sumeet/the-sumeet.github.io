@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=40325&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Design Distributed ID Generator :: Sumeet&#39;s Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn how to design a scalable distributed ID generator using Twitter Snowflake approach with 64-bit IDs" />
+<meta name="keywords" content="software engineering, API, frontend, mobile apps, Linux, programming" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:40325/posts/design-distributed-id-generator/" />
+
+
+  
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:40325/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:40325/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:40325/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Design Distributed ID Generator">
+<meta property="og:description" content="Learn how to design a scalable distributed ID generator using Twitter Snowflake approach with 64-bit IDs" />
+<meta property="og:url" content="http://localhost:40325/posts/design-distributed-id-generator/" />
+<meta property="og:site_name" content="Sumeet&#39;s Blog" />
+
+  <meta property="og:image" content="http://localhost:40325/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-11-17 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="http://localhost:40325/">
+  <div class="logo">
+    Sumeet&#39;s Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Blogs</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Blogs</a></li>
+        
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:40325/posts/design-distributed-id-generator/">Design Distributed ID Generator</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-11-17</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:40325/tags/system-design/">system-design</a>&nbsp;
+      
+      #<a href="http://localhost:40325/tags/distributed-systems/">distributed-systems</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h2 id="the-problem">The Problem<a href="#the-problem" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>In a distributed system with multiple servers/nodes, you can&rsquo;t rely on simple auto-incrementing database IDs because:</p>
+<ul>
+<li>Multiple nodes might generate the same ID simultaneously</li>
+<li>Coordination between nodes would be too slow</li>
+<li>You need globally unique IDs without a single point of failure</li>
+</ul>
+<p>This post explores how to design a distributed ID generator that can scale to hundreds of thousands of IDs per second across multiple data centers.</p>
+<h2 id="requirements--constraints">Requirements &amp; Constraints<a href="#requirements--constraints" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="functional-requirements">Functional Requirements<a href="#functional-requirements" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Scale</strong>:</p>
+<ul>
+<li>Initial: 10,000 IDs per second</li>
+<li>Target: 100,000 IDs per second</li>
+<li>Calculate: 100,000 IDs/sec × 86,400 seconds = 8.64 billion IDs per day</li>
+</ul>
+<p><strong>ID Properties</strong>:</p>
+<ul>
+<li>Format: 64-bit numeric integers (database-friendly)</li>
+<li>Ordering: Time-sortable for efficient indexing and range queries</li>
+<li>Gaps: Acceptable (uniqueness is more important than sequential ordering)</li>
+<li>Security: Predictability is acceptable (internal use only)</li>
+</ul>
+<p><strong>Infrastructure</strong>:</p>
+<ul>
+<li>Servers: Start with 10, scale to 1,024 servers</li>
+<li>Data centers: 3 regions</li>
+<li>Clock sync: NTP with &lt;1 second skew</li>
+</ul>
+<p><strong>Performance</strong>:</p>
+<ul>
+<li>Latency: Sub-millisecond preferred</li>
+<li>No single point of failure</li>
+<li>Losing IDs on crash is acceptable (but no duplicates ever)</li>
+</ul>
+<h3 id="key-design-questions">Key Design Questions<a href="#key-design-questions" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Architecture Decision</strong>: Centralized vs Distributed?</p>
+<ul>
+<li>Centralized: Easy to maintain, but creates bottleneck and single point of failure</li>
+<li><strong>Distributed (Chosen)</strong>: Each server generates IDs independently</li>
+</ul>
+<p><strong>Bit Allocation</strong>: How to structure the 64-bit ID?</p>
+<ul>
+<li>Need to balance timestamp range, machine capacity, and throughput</li>
+</ul>
+<p><strong>Machine ID Assignment</strong>: How do servers get unique IDs?</p>
+<ul>
+<li>Options: Manual configuration, ZooKeeper coordination, or configuration service</li>
+</ul>
+<p><strong>Clock Issues</strong>: What if the system clock goes backwards?</p>
+<ul>
+<li>Must detect and handle to prevent duplicate IDs</li>
+</ul>
+<h2 id="why-not-uuids">Why Not UUIDs?<a href="#why-not-uuids" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Before diving into our solution, let&rsquo;s understand why random UUIDs aren&rsquo;t ideal:</p>
+<p><strong>Problems with Random UUIDs</strong>:</p>
+<ul>
+<li><strong>Page splits</strong>: Database reorganizes index pages constantly</li>
+<li><strong>Poor locality</strong>: Related data scattered across disk</li>
+<li><strong>Cache misses</strong>: Can&rsquo;t keep &ldquo;hot&rdquo; data in memory efficiently</li>
+<li><strong>Slow writes</strong>: Every insert might touch different disk pages</li>
+<li><strong>Index bloat</strong>: B-tree becomes fragmented</li>
+<li><strong>Storage</strong>: 128 bits vs our 64-bit solution</li>
+</ul>
+<p><strong>Solution</strong>: Time-ordered IDs (Snowflake approach) solve these issues by keeping related IDs together.</p>
+<h2 id="the-solution-64-bit-snowflake-id-structure">The Solution: 64-Bit Snowflake ID Structure<a href="#the-solution-64-bit-snowflake-id-structure" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Our ID is composed of 4 parts within 64 bits:</p>
+<pre tabindex="0"><code>| 1 bit | 41 bits    | 10 bits   | 12 bits   |
+|-------|------------|-----------|-----------|
+| Sign  | Timestamp  | Machine   | Sequence  |
+|   0   | Millisec   | ID        | Number    |
+</code></pre><h3 id="bit-allocation-breakdown">Bit Allocation Breakdown<a href="#bit-allocation-breakdown" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>1. Sign Bit (1 bit)</strong>: Always 0</p>
+<ul>
+<li>Ensures the ID is positive when treated as signed integer</li>
+</ul>
+<p><strong>2. Timestamp (41 bits)</strong>:</p>
+<ul>
+<li>Capacity: 2^41 = 2,199,023,255,552 milliseconds ≈ 69.73 years</li>
+<li>With custom epoch (e.g., Jan 1, 2020), we get ~70 years of IDs</li>
+<li>Provides natural time-ordering for database efficiency</li>
+</ul>
+<p><strong>3. Machine ID (10 bits)</strong>:</p>
+<ul>
+<li>Capacity: 2^10 = 1,024 unique machines</li>
+<li>Can be split for multi-datacenter: 5 bits datacenter (32 DCs) + 5 bits machine (32 per DC)</li>
+<li>Ensures uniqueness across distributed servers</li>
+</ul>
+<p><strong>4. Sequence Number (12 bits)</strong>:</p>
+<ul>
+<li>Capacity: 2^12 = 4,096 IDs per millisecond per machine</li>
+<li>Equals 4 million IDs per second per machine</li>
+<li>Total capacity: 1,024 machines × 4M IDs = 4.1 billion IDs/second</li>
+<li><strong>Far exceeds our requirement of 100K IDs/second</strong></li>
+</ul>
+<h3 id="capacity-analysis">Capacity Analysis<a href="#capacity-analysis" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>With our bit allocation:</p>
+<ul>
+<li><strong>Per machine</strong>: 4,096,000 IDs/second</li>
+<li><strong>10 machines</strong>: 40,960,000 IDs/second</li>
+<li><strong>100 machines</strong>: 409,600,000 IDs/second</li>
+<li><strong>Requirement</strong>: 100,000 IDs/second ✓</li>
+</ul>
+<p>This provides excellent headroom for growth.</p>
+<h2 id="handling-edge-cases">Handling Edge Cases<a href="#handling-edge-cases" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="clock-drift-when-time-goes-backwards">Clock Drift: When Time Goes Backwards<a href="#clock-drift-when-time-goes-backwards" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>The Problem</strong>: If the system clock moves backwards, we risk generating duplicate IDs.</p>
+<p><strong>Detection</strong>: Simple comparison</p>
+<pre tabindex="0"><code>if current_time &lt; last_timestamp:
+    # Clock moved backwards!
+</code></pre><p><strong>Handling Strategies</strong>:</p>
+<ol>
+<li>
+<p><strong>Wait Strategy</strong> (Small drift &lt; 5ms):</p>
+<ul>
+<li>Pause and wait for clock to catch up</li>
+<li>Best for minor NTP adjustments</li>
+</ul>
+</li>
+<li>
+<p><strong>Continue Strategy</strong> (Medium drift 5-100ms):</p>
+<ul>
+<li>Keep using last_timestamp</li>
+<li>Continue incrementing sequence number</li>
+<li>Acceptable since IDs don&rsquo;t need precise timestamps</li>
+</ul>
+</li>
+<li>
+<p><strong>Reject Strategy</strong> (Large drift &gt; 100ms):</p>
+<ul>
+<li>Return error and log incident</li>
+<li>Prevents service from generating bad IDs</li>
+<li>Requires manual intervention</li>
+</ul>
+</li>
+<li>
+<p><strong>Hybrid Approach</strong> (Recommended):</p>
+<pre tabindex="0"><code>drift = last_timestamp - current_time
+
+if drift &lt; 5ms:
+    wait_until(last_timestamp)
+elif drift &lt; 100ms:
+    use last_timestamp + increment sequence
+else:
+    raise ClockDriftError
+</code></pre></li>
+</ol>
+<p><strong>Prevention &amp; Monitoring</strong>:</p>
+<ul>
+<li>Configure NTP properly on all servers</li>
+<li>Monitor clock drift metrics continuously</li>
+<li>Alert on any backward clock movements</li>
+<li>Log all clock anomalies for analysis</li>
+</ul>
+<h3 id="sequence-number-exhaustion">Sequence Number Exhaustion<a href="#sequence-number-exhaustion" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Problem</strong>: What if we generate 4,096 IDs within the same millisecond?</p>
+<p><strong>Solution Options</strong>:</p>
+<ol>
+<li><strong>Wait for next millisecond</strong> (Recommended): Brief pause, guaranteed uniqueness</li>
+<li><strong>Return error</strong>: Fail fast, let caller retry</li>
+<li><strong>Spin wait</strong>: Busy-wait until clock advances</li>
+</ol>
+<h3 id="machine-id-assignment">Machine ID Assignment<a href="#machine-id-assignment" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Options</strong>:</p>
+<ol>
+<li>
+<p><strong>Manual Configuration</strong>:</p>
+<ul>
+<li>Simple: Add machine ID to config file</li>
+<li>Pros: No external dependencies</li>
+<li>Cons: Human error risk, manual tracking</li>
+</ul>
+</li>
+<li>
+<p><strong>ZooKeeper/Consul</strong>:</p>
+<ul>
+<li>Auto-assign IDs from a range</li>
+<li>Pros: Automated, centralized tracking</li>
+<li>Cons: External dependency</li>
+</ul>
+</li>
+<li>
+<p><strong>Database Registration</strong>:</p>
+<ul>
+<li>Servers register on startup</li>
+<li>Pros: Audit trail, easy monitoring</li>
+<li>Cons: Database dependency</li>
+</ul>
+</li>
+</ol>
+<p><strong>Recommendation</strong>: Use ZooKeeper for automatic assignment with manual override capability.</p>
+<h2 id="implementation-considerations">Implementation Considerations<a href="#implementation-considerations" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="multi-datacenter-support">Multi-Datacenter Support<a href="#multi-datacenter-support" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Split the 10-bit machine ID:</p>
+<ul>
+<li><strong>5 bits for datacenter</strong>: Supports 32 datacenters</li>
+<li><strong>5 bits for machine</strong>: 32 machines per datacenter</li>
+<li>Total: 32 × 32 = 1,024 unique ID generators</li>
+</ul>
+<h3 id="time-precision-trade-offs">Time Precision Trade-offs<a href="#time-precision-trade-offs" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Milliseconds (Chosen)</strong>:</p>
+<ul>
+<li>✓ Good balance between precision and lifespan</li>
+<li>✓ 69+ years of IDs</li>
+<li>✓ Sufficient granularity for most applications</li>
+</ul>
+<p><strong>Seconds</strong>:</p>
+<ul>
+<li>✓ 2,199+ years of IDs</li>
+<li>✗ Lower granularity (need more sequence bits)</li>
+</ul>
+<h3 id="id-generation-algorithm">ID Generation Algorithm<a href="#id-generation-algorithm" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<pre tabindex="0"><code>function generate_id():
+    current_time = get_current_milliseconds()
+
+    if current_time &lt; last_timestamp:
+        handle_clock_backwards(current_time)
+
+    if current_time == last_timestamp:
+        sequence = (sequence + 1) &amp; 4095  # 12-bit mask
+        if sequence == 0:
+            # Exhausted sequence, wait for next millisecond
+            current_time = wait_next_millisecond(last_timestamp)
+    else:
+        sequence = 0
+
+    last_timestamp = current_time
+
+    # Construct the ID
+    id = ((current_time - EPOCH) &lt;&lt; 22) |
+         (machine_id &lt;&lt; 12) |
+         sequence
+
+    return id
+</code></pre><h2 id="advantages-of-this-design">Advantages of This Design<a href="#advantages-of-this-design" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ol>
+<li><strong>Scalable</strong>: Supports up to 1,024 machines generating 4B+ IDs/second</li>
+<li><strong>Time-ordered</strong>: IDs naturally sort by creation time</li>
+<li><strong>Database-friendly</strong>: Sequential IDs improve B-tree index performance</li>
+<li><strong>Compact</strong>: Only 64 bits (vs 128 for UUIDs)</li>
+<li><strong>Independent</strong>: No coordination needed between servers</li>
+<li><strong>Fast</strong>: Sub-millisecond latency, no network calls</li>
+<li><strong>Debuggable</strong>: Can extract timestamp and machine ID from any ID</li>
+</ol>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The Snowflake approach provides an excellent balance between simplicity, performance, and scalability for distributed ID generation. By carefully allocating bits across timestamp, machine ID, and sequence number, we achieve:</p>
+<ul>
+<li><strong>100K+ IDs/second</strong> capacity (with room for 40x growth)</li>
+<li><strong>69+ years</strong> of unique IDs</li>
+<li><strong>Zero coordination</strong> overhead between servers</li>
+<li><strong>Database-optimized</strong> time-ordered IDs</li>
+</ul>
+<p>This design has been battle-tested at scale by Twitter, Instagram, Discord, and many others, making it a proven solution for distributed systems.</p>
+
+      </div></div>
+
+  
+    
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>© 2025 Sumeet</span>
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
