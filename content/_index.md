@@ -1,5 +1,6 @@
 ---
 title: "Home"
+description: "Software engineer sharing insights on APIs, front-end development, mobile apps, and Linux"
 ---
 
 Hi, I'm Sumeet!

@@ -5,7 +5,23 @@ theme = 'terminal'
 paginate = 10
 copyright = "© 2025 Sumeet"
 
+# Enable emoji support in content
+enableEmoji = true
+
+# Generate robots.txt
+enableRobotsTXT = true
+
+# Enable sitemap
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
 [params]
+  # SEO
+  description = "A blog about software engineering, APIs, front-end, mobile apps, and Linux"
+  keywords = "software engineering, API, frontend, mobile apps, Linux, programming"
+  author = "Sumeet"
+
   # Content type for posts pagination
   contentTypeName = "posts"
 

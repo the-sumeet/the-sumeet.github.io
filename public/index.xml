@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Sumeet's Blog</title><link>https://the-sumeet.github.io/</link><description>Recent content in Home on Sumeet's Blog</description><generator>Hugo</generator><language>en-us</language><copyright>© 2025 Sumeet</copyright><lastBuildDate/><atom:link href="https://the-sumeet.github.io/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Sumeet&#39;s Blog</title>
+    <link>http://localhost:40325/</link>
+    <description>Recent content in Home on Sumeet&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>© 2025 Sumeet</copyright>
+    <lastBuildDate>Mon, 17 Nov 2025 17:13:56 +0530</lastBuildDate>
+    <atom:link href="http://localhost:40325/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Post</title>
+      <link>http://localhost:40325/posts/my-first-post/</link>
+      <pubDate>Mon, 17 Nov 2025 17:13:56 +0530</pubDate>
+      <guid>http://localhost:40325/posts/my-first-post/</guid>
+      <description>foo Bar </description>
+    </item>
+  </channel>
+</rss>
