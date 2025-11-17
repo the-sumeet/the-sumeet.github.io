@@ -1,0 +1,25 @@
+baseURL = 'https://the-sumeet.github.io/'
+languageCode = 'en-us'
+title = "Sumeet's Blog"
+theme = 'terminal'
+paginate = 10
+copyright = "© 2025 Sumeet"
+
+[params]
+  # Content type for posts pagination
+  contentTypeName = "posts"
+
+  # Theme colors: blue, green, red, pink, orange
+  themeColor = "blue"
+
+  # Read more button text
+  ReadMore = "Read more"
+
+[params.Logo]
+  logoText = "Sumeet's Blog"
+
+[[menu.main]]
+  identifier = "blogs"
+  name = "Blogs"
+  url = "/posts"
+  weight = 2
