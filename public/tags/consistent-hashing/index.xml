@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Consistent-Hashing on Sumeet&#39;s Blog</title>
+    <link>https://the-sumeet.github.io/tags/consistent-hashing/</link>
+    <description>Recent content in Consistent-Hashing on Sumeet&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://the-sumeet.github.io/tags/consistent-hashing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Consistent Hashing</title>
+      <link>https://the-sumeet.github.io/posts/consistent-hashing/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://the-sumeet.github.io/posts/consistent-hashing/</guid>
+      <description>&lt;p&gt;Consistent hashing is a technique used in distributed systems to distribute data across a changing set of nodes (like servers) with minimal disruption.&lt;/p&gt;&#xA;&lt;p&gt;In a traditional hashing system, if you add or remove a server, almost every single piece of data has to be moved to a new location. Consistent hashing solves this by ensuring that when the number of servers changes, only a small fraction of keys need to be remapped.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

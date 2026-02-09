@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Consistent Hashing :: Sumeet&#39;s Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="My notes about consistent hashing" />
+<meta name="keywords" content="software engineering, API, frontend, mobile apps, Linux, programming" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://the-sumeet.github.io/posts/consistent-hashing/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="https://the-sumeet.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://the-sumeet.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://the-sumeet.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Consistent Hashing">
+<meta property="og:description" content="My notes about consistent hashing" />
+<meta property="og:url" content="https://the-sumeet.github.io/posts/consistent-hashing/" />
+<meta property="og:site_name" content="Sumeet&#39;s Blog" />
+
+  <meta property="og:image" content="https://the-sumeet.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-02-01 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+<meta name="google-site-verification" content="GzFBhIHqDnOqXslB-4aNJVW4Eg5WQd4hmpLblwU73yI" />
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://the-sumeet.github.io/">
+  <div class="logo">
+    Sumeet&#39;s Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Blogs</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Blogs</a></li>
+        
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://the-sumeet.github.io/posts/consistent-hashing/">Consistent Hashing</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-02-01</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://the-sumeet.github.io/tags/consistent-hashing/">consistent-hashing</a>&nbsp;
+      
+      #<a href="https://the-sumeet.github.io/tags/system-design/">system-design</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Consistent hashing is a technique used in distributed systems to distribute data across a changing set of nodes (like servers) with minimal disruption.</p>
+<p>In a traditional hashing system, if you add or remove a server, almost every single piece of data has to be moved to a new location. Consistent hashing solves this by ensuring that when the number of servers changes, only a small fraction of keys need to be remapped.</p>
+<h1 id="the-hash-ring-mechanism">The Hash Ring Mechanism<a href="#the-hash-ring-mechanism" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>In a standard system, you might use a simple formula like <code>server = key(mod n)</code>, where <code>n</code> is the number of servers. But if <code>n</code> changes (a server crashes or you add a new one), almost every key&rsquo;s location changes. Consistent hashing avoids this mess.</p>
+<p>How the Ring Works</p>
+<p>Imagine a circle representing a range of numbers (for example, from 0 to 232−1).</p>
+<ul>
+<li><strong>Placing Servers:</strong> We hash the server names (like &ldquo;Server A&rdquo;, &ldquo;Server B&rdquo;) to get a position for each one on the ring.</li>
+<li><strong>Placing Data:</strong> We hash the data keys (like &ldquo;User_123&rdquo;) to get their positions on the same ring.</li>
+<li><strong>The Assignment:</strong> To find which server stores a key, you move clockwise from the key&rsquo;s position until you hit the first server.</li>
+</ul>
+<h1 id="virtual-servers">Virtual Servers<a href="#virtual-servers" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="the-problem-of-clumping">The Problem of Clumping<a href="#the-problem-of-clumping" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>In the real world, hash functions don&rsquo;t always distribute servers perfectly evenly around the circle. You might end up with a situation where Server <code>A</code> and Server <code>B</code> are very close together, but there is a massive gap between Server B and Server <code>C</code>.</p>
+<p>If the gap between <code>B</code> and <code>C</code> is huge, Server <code>C</code> ends up being responsible for a much larger portion of the ring than the others.</p>
+<ul>
+<li><strong>Server A:</strong> Handles 10% of the ring.</li>
+<li><strong>Server B:</strong> Handles 10% of the ring.</li>
+<li><strong>Server C:</strong> Handles 80% of the ring.</li>
+</ul>
+<p>If Server <code>C</code> is doing 8 times the work of the others, it might crash under the pressure, leading to a &ldquo;cascading failure&rdquo; where other servers start failing one by one.</p>
+<h2 id="using-virtual-servers">Using Virtual Servers<a href="#using-virtual-servers" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Instead of placing a server on the ring just once, we hash it multiple times using different labels (e.g., &ldquo;Server A#1&rdquo;, &ldquo;Server A#2&rdquo;, &ldquo;Server A#3&rdquo;). This scatters many &ldquo;virtual&rdquo; points for a single physical server all across the ring.</p>
+<p>The virtual nodes are completely mixed together on the ring.</p>
+<ul>
+<li><strong>Better Balance:</strong> With hundreds of virtual nodes for each server, the gaps between nodes become much smaller and more uniform. It&rsquo;s like spreading a deck of cards across the table instead of just three big piles.</li>
+<li><strong>Adaptive Power:</strong> If Server A is twice as powerful as Server B, we can simply give Server A twice as many virtual nodes. It will naturally &ldquo;claim&rdquo; more segments of the ring and handle more data.</li>
+<li><strong>Smoother Handover:</strong> If a server fails, its many virtual nodes disappear, and its load is distributed across all the remaining servers&rsquo; virtual nodes, rather than dumping everything onto just one neighbor.</li>
+</ul>
+<h1 id="the-hot-key-challenge">The &ldquo;Hot Key&rdquo; Challenge<a href="#the-hot-key-challenge" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Even with a perfectly balanced ring and virtual nodes, you can still run into trouble. Imagine a social media app where 99% of your users are looking at one specific &ldquo;celebrity&rdquo; profile.</p>
+<p>In a consistent hashing setup:</p>
+<ul>
+<li>That celebrity&rsquo;s data hashes to one specific spot on the ring.</li>
+<li>That spot belongs to one specific server (and its virtual nodes).</li>
+<li>Even though the ring is &ldquo;fair,&rdquo; that one server gets slammed with 99% of the traffic.</li>
+</ul>
+<p>If everyone wants to see the same celebrity profile, one server gets crushed even with a perfect hash ring. To solve this, systems often use layering:</p>
+<ul>
+<li><strong>Local Caching:</strong> The client or a load balancer saves a copy of that specific hot data so it doesn&rsquo;t even have to ask the hash ring.</li>
+<li><strong>Dynamic Replication:</strong> If the system detects a &ldquo;hot&rdquo; spot, it can temporarily copy that specific data to multiple servers on the ring, spreading the load.</li>
+</ul>
+<h1 id="the-metadata-trade-off">The Metadata Trade-off<a href="#the-metadata-trade-off" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Consistent hashing isn&rsquo;t &ldquo;free.&rdquo; For a client, to find data, it needs to know the current state of the ring.</p>
+<ul>
+<li><strong>The Cost:</strong> Every time a server joins or leaves, every client needs to be updated. If you have 10,000 clients, that&rsquo;s a lot of update messages.</li>
+<li><strong>Gossip Protocols:</strong> Many systems use a &ldquo;Gossip&rdquo; method where servers constantly whisper to each other: &ldquo;Hey, I&rsquo;m still here&rdquo; or &ldquo;New guy just joined at position 400.&rdquo; This information eventually trickles down to everyone.</li>
+</ul>
+<h1 id="replication">Replication<a href="#replication" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>In systems like Apache Cassandra, they don&rsquo;t just store data on the &ldquo;first&rdquo; server they hit. To ensure they don&rsquo;t lose your data if a server blows up, they use a Replication Factor (RF).</p>
+<p>If RF=3, the system finds the first server (the &ldquo;Coordinator&rdquo;), and then automatically saves copies of that data on the next two distinct physical servers walking clockwise around the ring.</p>
+<p>The Replication Dilemma 🛡️</p>
+<p>When we talked about replication, a tricky question arises: <strong>If you write data to the ring, do you wait for all 3 servers to confirm they have it before telling the user &ldquo;Success&rdquo;?</strong></p>
+<ul>
+<li><strong>Wait for all 3:</strong> Your data is super safe, but the system feels slow. If one server is laggy, the whole write is laggy.</li>
+<li><strong>Wait for 1:</strong> It’s lightning-fast, but if that one server crashes immediately after, you might &ldquo;lose&rdquo; the update before it reaches the other two.</li>
+</ul>
+<p>Most systems like Cassandra use a &ldquo;Quorum&rdquo; (N/2) + 1. For a replication factor of 3, they usually wait for 2 servers to acknowledge the write. This balances speed with safety.</p>
+<h1 id="case-studies">Case Studies<a href="#case-studies" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="discord-managing-millions-of-voice-chats">Discord: Managing Millions of Voice Chats<a href="#discord-managing-millions-of-voice-chats" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Discord uses a variation of consistent hashing to manage their voice servers.</p>
+<p><strong>The Problem:</strong> When you join a voice channel, you have a persistent connection to a specific server. if Discord used simple hashing and added a new server to handle more users, the &ldquo;modulo&rdquo; would shift, and everyone would get disconnected and have to reconnect.</p>
+<p><strong>The Solution:</strong> With the hash ring, they can add new servers to their &ldquo;fleet&rdquo; during peak hours, and only a tiny fraction of users—those who land in the new server&rsquo;s slice—need to move. Everyone else keeps talking without a hiccup.</p>
+<h2 id="netflix-the-content-delivery-open-connect">Netflix: The Content Delivery &ldquo;Open Connect&rdquo;<a href="#netflix-the-content-delivery-open-connect" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Netflix doesn&rsquo;t just use this for small bits of data; they use it to decide which physical hard drives across the world should hold specific movie files.</p>
+<p><strong>The Problem:</strong> Some servers have 200TB of spinning disks, while others are ultra-fast SSDs with only 18TB. A &ldquo;fair&rdquo; ring would overwhelm the small ones.</p>
+<p><strong>The Solution:</strong> They use Weighted Virtual Nodes. They give the big 200TB servers thousands of virtual nodes on the ring, while the 18TB servers get far fewer. This ensures that the movies are distributed exactly in proportion to what each server can handle.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h"></span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="https://the-sumeet.github.io/posts/design-rate-limiter/" class="button inline next">
+         [<span class="button__text">Design a Rate Limiter</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
