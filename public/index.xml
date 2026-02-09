@@ -2,19 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on Sumeet&#39;s Blog</title>
-    <link>http://localhost:40325/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content in Home on Sumeet&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <copyright>© 2025 Sumeet</copyright>
-    <lastBuildDate>Mon, 17 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:40325/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design a Rate Limiter</title>
+      <link>http://localhost:1313/posts/design-rate-limiter/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design-rate-limiter/</guid>
+      <description>&lt;p&gt;Designing a rate limiter is a classic problem in system design interviews. Its primary job is to control the rate of traffic sent by a client or a service to ensure the system remains stable and protected against abuse (like DDoS attacks) or cascading failures.&lt;/p&gt;&#xA;&lt;p&gt;We will discuss here the rate limiter algorithms (the &amp;ldquo;how&amp;rdquo; of the logic), the architecture (the &amp;ldquo;where&amp;rdquo; and &amp;ldquo;who&amp;rdquo;), and the high level requirements (the &amp;ldquo;what&amp;rdquo;), like low latency, high availability, and how to handle &amp;ldquo;hard&amp;rdquo; vs &amp;ldquo;soft&amp;rdquo; limits.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Design Distributed ID Generator</title>
-      <link>http://localhost:40325/posts/design-distributed-id-generator/</link>
+      <link>http://localhost:1313/posts/design-distributed-id-generator/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:40325/posts/design-distributed-id-generator/</guid>
-      <description>The Problem In a distributed system with multiple servers/nodes, you can&amp;rsquo;t rely on simple auto-incrementing database IDs because:&#xA;Multiple nodes might generate the same ID simultaneously Coordination between nodes would be too slow You need globally unique IDs without a single point of failure This post explores how to design a distributed ID generator that can scale to hundreds of thousands of IDs per second across multiple data centers.&#xA;Requirements &amp;amp; Constraints Functional Requirements Scale:</description>
+      <guid>http://localhost:1313/posts/design-distributed-id-generator/</guid>
+      <description>&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;&#xA;&lt;p&gt;In a distributed system with multiple servers/nodes, you can&amp;rsquo;t rely on simple auto-incrementing database IDs because:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Multiple nodes might generate the same ID simultaneously&lt;/li&gt;&#xA;&lt;li&gt;Coordination between nodes would be too slow&lt;/li&gt;&#xA;&lt;li&gt;You need globally unique IDs without a single point of failure&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This post explores how to design a distributed ID generator that can scale to hundreds of thousands of IDs per second across multiple data centers.&lt;/p&gt;&#xA;&lt;h2 id=&#34;requirements--constraints&#34;&gt;Requirements &amp;amp; Constraints&lt;/h2&gt;&#xA;&lt;h3 id=&#34;functional-requirements&#34;&gt;Functional Requirements&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Scale&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

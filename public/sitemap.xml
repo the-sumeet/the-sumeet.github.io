@@ -2,37 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:40325/tags/getting-started/</loc>
-    <lastmod>2025-11-17T17:13:56+05:30</lastmod>
+    <loc>http://localhost:1313/posts/design-rate-limiter/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:40325/</loc>
-    <lastmod>2025-11-17T17:13:56+05:30</lastmod>
+    <loc>http://localhost:1313/tags/distributed-systems/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:40325/posts/my-first-post/</loc>
-    <lastmod>2025-11-17T17:13:56+05:30</lastmod>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:40325/posts/</loc>
-    <lastmod>2025-11-17T17:13:56+05:30</lastmod>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:40325/tags/</loc>
-    <lastmod>2025-11-17T17:13:56+05:30</lastmod>
+    <loc>http://localhost:1313/tags/rate-limiter/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:40325/tags/tutorial/</loc>
-    <lastmod>2025-11-17T17:13:56+05:30</lastmod>
+    <loc>http://localhost:1313/tags/system-design/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:40325/categories/</loc>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/design-distributed-id-generator/</loc>
+    <lastmod>2025-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

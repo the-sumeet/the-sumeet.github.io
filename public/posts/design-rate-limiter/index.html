@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Design a Rate Limiter :: Sumeet&#39;s Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="My notes for designing a rate limiter" />
+<meta name="keywords" content="software engineering, API, frontend, mobile apps, Linux, programming" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/design-rate-limiter/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Design a Rate Limiter">
+<meta property="og:description" content="My notes for designing a rate limiter" />
+<meta property="og:url" content="http://localhost:1313/posts/design-rate-limiter/" />
+<meta property="og:site_name" content="Sumeet&#39;s Blog" />
+
+  <meta property="og:image" content="http://localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-02-01 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+<meta name="google-site-verification" content="GzFBhIHqDnOqXslB-4aNJVW4Eg5WQd4hmpLblwU73yI" />
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="http://localhost:1313/">
+  <div class="logo">
+    Sumeet&#39;s Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Blogs</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Blogs</a></li>
+        
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/design-rate-limiter/">Design a Rate Limiter</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-02-01</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/tags/system-design/">system-design</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/distributed-systems/">distributed-systems</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/rate-limiter/">rate-limiter</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Designing a rate limiter is a classic problem in system design interviews. Its primary job is to control the rate of traffic sent by a client or a service to ensure the system remains stable and protected against abuse (like DDoS attacks) or cascading failures.</p>
+<p>We will discuss here the rate limiter algorithms (the &ldquo;how&rdquo; of the logic), the architecture (the &ldquo;where&rdquo; and &ldquo;who&rdquo;), and the high level requirements (the &ldquo;what&rdquo;), like low latency, high availability, and how to handle &ldquo;hard&rdquo; vs &ldquo;soft&rdquo; limits.</p>
+<h1 id="algorithms">Algorithms<a href="#algorithms" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>We can start with different rate limiter algorithms.</p>
+<p>Here is the list we will be exploring,</p>
+<ul>
+<li>Token bucket, the most popular; allows for &ldquo;bursty&rdquo; traffic.</li>
+<li>Leaky bucket, turns bursts into a steady, constant stream.</li>
+<li>Fixed window counter, the simplest, resets every minute/hour.</li>
+<li>Sliding window log, the most accurate, tracks every single timestamp.</li>
+<li>Sliding window counter, a memory-efficient hybrid of fixed window and sliding log.</li>
+</ul>
+<p>Each one solves a specific problem. For example, some are great for saving memory, while others are better at making sure your servers don&rsquo;t crash during a sudden spike.</p>
+<h2 id="token-bucket">Token Bucket<a href="#token-bucket" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>This is simplest algorithm. Here, we have a <strong>bucket with a pre-defined capacity.</strong></p>
+<ul>
+<li>Tokens drop into the bucket at a fixed rate (e.g., 5 tokens per second).</li>
+<li>Every time a user makes an API call, it &ldquo;costs&rdquo; one token. If a token is there, the request passes. If the bucket is empty, the request is blocked, or limited.</li>
+<li>Because tokens can accumulate up to the bucket&rsquo;s capacity, a user who hasn&rsquo;t made a request in a while can suddenly send a &ldquo;burst&rdquo; of multiple requests at once.</li>
+</ul>
+<h2 id="leaky-bucket">Leaky Bucket<a href="#leaky-bucket" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Like token bucket, we will have <strong>bucket with a pre-defined capacity.</strong></p>
+<ul>
+<li>But, instead of tokens, requests enter a bucket (a queue) and &ldquo;leak&rdquo; out to be processed at a strictly constant rate.</li>
+<li>If the bucket is full of pending requests, any new incoming requests are discarded immediately.</li>
+<li>Unlike the token bucket, it does not allow bursts. It forces traffic into a perfectly steady stream, which is great if your backend can only handle a specific, unmoving load.</li>
+</ul>
+<h2 id="fixed-window-counter">Fixed Window Counter<a href="#fixed-window-counter" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>This is the simplest algorithm to implement.</p>
+<ul>
+<li>Divide time into fixed units (e.g., 1-minute blocks). Each block has a counter.</li>
+<li>When a new minute starts, the counter resets to zero.</li>
+<li>It suffers from a &ldquo;boundary problem.&rdquo; If a user sends a burst of requests right at the end of one minute and another burst right at the start of the next, they could technically double the allowed limit in a very short span of time.</li>
+</ul>
+<h2 id="sliding-window-log">Sliding Window Log<a href="#sliding-window-log" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>This is the most &ldquo;accurate&rdquo; algorithm because it tracks every single request.</p>
+<ul>
+<li>We keep a log of timestamps for every request a user makes.</li>
+<li>When a new request comes in, add timestamp of the new request to the log. We look back exactly 1 minute (or whatever window length is) from the current timestamp and count how many entries are in the log.
+<ul>
+<li>We might have to remove the requests older that the current window.</li>
+</ul>
+</li>
+<li>While extremely accurate, it consumes a lot of memory because you have to store a timestamp for every single request.</li>
+</ul>
+<h2 id="sliding-window-counter">Sliding Window Counter<a href="#sliding-window-counter" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Assume following scenario</p>
+<pre tabindex="0"><code>                     Rolling Minute                                  
+               ┌───────────────────────────┐                         
+               │                           │                         
+               │                           │                         
+               │                           │                         
+   ┌───────────│──────────────────┬────────│─────────────────────┐   
+   │           │             ┌──┐ │ ┌──┐   │                     │   
+   │           │             │  │ │ │  │   │                     │   
+   │           │             └──┘ │ └──┘   │                     │   
+   │           │        ┌──┐ ┌──┐ │ ┌──┐   │                     │   
+   │           │        │  │ │  │ │ │  │   │                     │   
+   │           │        └──┘ └──┘ │ └──┘   │                     │   
+   │           │        ┌──┐ ┌──┐ │ ┌──┐   │                     │   
+   │           │        │  │ │  │ │ │  │   │                     │   
+   │           │        └──┘ └──┘ │ └──┘   │                     │   
+   └───────────│──────────────────┴────────│─────────────────────┘   
+               │                           │                         
+               └───────────────────────────┘                         
+                                                                     
+                                                                     
+   ◄──────────────────────────────►◄──────────────────────────────►  
+               Last Minute                   Current Minute          
+                                                                     
+                ◄─────────────────►◄───────►                         
+                         70%          30%                                                                                              
+</code></pre><p>To calculate requests in current rolling minute</p>
+<ul>
+<li>A fixed window count algorithm will just count the requests in current window which are 3 requests.</li>
+<li>A sliding window log would count the requests in the rolling window with timestamps which are 8.</li>
+</ul>
+<p>Sliding window counter is a clever hybrid that tries to get the accuracy of the log without the high memory cost. The number of requests in the rolling window is calculated using the following formula,</p>
+<p><strong>Current Window Count + (Previous Window Count × Percentage of overlap)</strong></p>
+<p>Using this formula, we get 3 + 5 * 0.7% = 6.5 request. Depending on the use case, the
+number can either be rounded up or down. In our example, it is rounded down to 6.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h"></span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="http://localhost:1313/posts/design-distributed-id-generator/" class="button inline next">
+         [<span class="button__text">Design Distributed ID Generator</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

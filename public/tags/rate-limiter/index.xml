@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rate-Limiter on Sumeet&#39;s Blog</title>
+    <link>http://localhost:1313/tags/rate-limiter/</link>
+    <description>Recent content in Rate-Limiter on Sumeet&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rate-limiter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design a Rate Limiter</title>
+      <link>http://localhost:1313/posts/design-rate-limiter/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design-rate-limiter/</guid>
+      <description>&lt;p&gt;Designing a rate limiter is a classic problem in system design interviews. Its primary job is to control the rate of traffic sent by a client or a service to ensure the system remains stable and protected against abuse (like DDoS attacks) or cascading failures.&lt;/p&gt;&#xA;&lt;p&gt;We will discuss here the rate limiter algorithms (the &amp;ldquo;how&amp;rdquo; of the logic), the architecture (the &amp;ldquo;where&amp;rdquo; and &amp;ldquo;who&amp;rdquo;), and the high level requirements (the &amp;ldquo;what&amp;rdquo;), like low latency, high availability, and how to handle &amp;ldquo;hard&amp;rdquo; vs &amp;ldquo;soft&amp;rdquo; limits.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
