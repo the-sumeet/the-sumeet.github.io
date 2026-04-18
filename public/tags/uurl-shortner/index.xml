@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uurl-Shortner on Sumeet&#39;s Blog</title>
+    <link>http://localhost:1313/tags/uurl-shortner/</link>
+    <description>Recent content in Uurl-Shortner on Sumeet&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/uurl-shortner/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design URL Shortner    </title>
+      <link>http://localhost:1313/posts/design-url-shortner/</link>
+      <pubDate>Sun, 22 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design-url-shortner/</guid>
+      <description>&lt;p&gt;URL shortners, like (tinyURL), maps a long URL to a short, unique key.&lt;/p&gt;&#xA;&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;100 million URLs generated per day.&lt;/li&gt;&#xA;&lt;li&gt;1:10 write to read ratio.&lt;/li&gt;&#xA;&lt;li&gt;Maximum 10 characters long.&lt;/li&gt;&#xA;&lt;li&gt;Alphanumeric characters are allowed.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;calculations&#34;&gt;Calculations&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Since 100 million records added per day, we will have (100,000,000 / (24 * 60 * 60)) = &lt;strong&gt;1160 writes per seconds.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;As write to read ratio is 1:10, &lt;strong&gt;we will have 11600 reads per second.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;If we want our service to run for 10 years, &lt;strong&gt;we have to generate (100,000,000 * 365 * 10), which is 356 billion records.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;If we assume that the input length is 100 characters, which is 100 bytes, then &lt;strong&gt;for 10 years, we shall need 365 billion * 100 bytes = 36.5 TB of storage.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
