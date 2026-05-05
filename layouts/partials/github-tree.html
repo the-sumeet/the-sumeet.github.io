@@ -1,0 +1,81 @@
+<div class="github-editor-container" data-repo="{{ .repo }}" data-sha="{{ .sha }}">
+    <div class="editor-sidebar">
+        <div class="sidebar-header">Files</div>
+        <ul class="file-list"><li>Loading...</li></ul>
+    </div>
+    <div class="editor-main">
+        <div class="file-path-header">Select a file to view code</div>
+        <pre class="code-view"><code>// Code will appear here</code></pre>
+    </div>
+</div>
+
+
+<script src="{{ "js/github-browser.js" | relURL }}"></script>
+
+<style>
+.github-editor-container {
+    display: flex;
+    height: 500px;
+    border: 1px solid #8c959f; /* Darkened border for better contrast */
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background-color: #ffffff; /* Force background */
+    color: #24292f; /* Force text color to ensure contrast */
+}
+
+.editor-sidebar {
+    width: 250px;
+    flex-shrink: 0; /* FIX 1: This stops the sidebar from being squished away */
+    background-color: #f6f8fa;
+    border-right: 1px solid #d0d7de;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #57606a;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.file-list { list-style: none; padding: 0; margin: 0; }
+.file-list li {
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #24292f; /* Explicit text color */
+}
+.file-list li:hover { background-color: #e2e6ea; } /* Slightly darker hover state */
+.file-list li.active { background-color: #ffffff; font-weight: bold; border-left: 3px solid #0969da; padding-left: 9px; } /* Added a blue line to show active file */
+
+.editor-main { 
+    flex: 1; 
+    min-width: 0; /* FIX 2: Forces the main container to respect the screen size, keeping the sidebar safe */
+    display: flex; 
+    flex-direction: column; 
+    background: #ffffff; 
+}
+
+.file-path-header { 
+    padding: 10px; 
+    background: #f6f8fa; 
+    border-bottom: 1px solid #d0d7de; 
+    font-size: 13px;
+    color: #57606a;
+}
+
+.code-view { 
+    margin: 0; 
+    padding: 20px; 
+    overflow: auto; /* FIX 3: Ensures scrollbars appear on the code, not the whole widget */
+    flex: 1; 
+    font-size: 13px; 
+    color: #24292f;
+}
+</style>
