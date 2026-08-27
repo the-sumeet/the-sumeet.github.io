@@ -2,132 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/database/</loc>
+    <loc>http://localhost:1111/tags/database/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/postgres-full-text-search/</loc>
+    <loc>http://localhost:1111/posts/postgres-full-text-search/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:1111/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/postgres/</loc>
+    <loc>http://localhost:1111/tags/postgres/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/searching/</loc>
+    <loc>http://localhost:1111/tags/searching/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:1111/tags/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/system-design/</loc>
+    <loc>http://localhost:1111/tags/system-design/</loc>
     <lastmod>2026-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/open-telemetry/</loc>
+    <loc>http://localhost:1111/posts/open-telemetry/</loc>
     <lastmod>2026-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/uurl-shortner/</loc>
+    <loc>http://localhost:1111/tags/uurl-shortner/</loc>
     <lastmod>2026-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/design-url-shortner/</loc>
+    <loc>http://localhost:1111/posts/design-url-shortner/</loc>
     <lastmod>2026-02-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/unique-id-generator/</loc>
+    <loc>http://localhost:1111/posts/unique-id-generator/</loc>
     <lastmod>2026-02-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/unique-id-generator/</loc>
+    <loc>http://localhost:1111/tags/unique-id-generator/</loc>
     <lastmod>2026-02-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/consistent-hashing/</loc>
+    <loc>http://localhost:1111/posts/consistent-hashing/</loc>
     <lastmod>2026-02-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/consistent-hashing/</loc>
+    <loc>http://localhost:1111/tags/consistent-hashing/</loc>
     <lastmod>2026-02-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/design-rate-limiter/</loc>
+    <loc>http://localhost:1111/posts/design-rate-limiter/</loc>
     <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/distributed-systems/</loc>
+    <loc>http://localhost:1111/tags/distributed-systems/</loc>
     <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/rate-limiter/</loc>
+    <loc>http://localhost:1111/tags/rate-limiter/</loc>
     <lastmod>2026-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/posts/design-distributed-id-generator/</loc>
+    <loc>http://localhost:1111/posts/design-distributed-id-generator/</loc>
     <lastmod>2025-11-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/blue/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/green/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-3/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/red/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-2/</loc>
-    <lastmod>2023-02-15T10:00:00-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-1/</loc>
-    <lastmod>2023-01-15T09:00:00-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:1111/posts/</loc>
     <lastmod>2023-01-01T08:30:00-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:1111/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

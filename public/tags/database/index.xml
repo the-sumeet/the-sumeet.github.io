@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Database on Sumeet&#39;s Blog</title>
-    <link>http://localhost:1313/tags/database/</link>
+    <link>http://localhost:1111/tags/database/</link>
     <description>Recent content in Database on Sumeet&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1111/tags/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Full Text search with Postgres</title>
-      <link>http://localhost:1313/posts/postgres-full-text-search/</link>
+      <link>http://localhost:1111/posts/postgres-full-text-search/</link>
       <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/postgres-full-text-search/</guid>
+      <guid>http://localhost:1111/posts/postgres-full-text-search/</guid>
       <description>&lt;p&gt;PostgreSQL offers a powerful, built-in full text search engine that allows us to search through unstructured text using linguistic rules rather than simple pattern matching (like &lt;code&gt;LIKE&lt;/code&gt; or &lt;code&gt;regex&lt;/code&gt;). In this article, we shall understand what those features are.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -3,10 +3,9 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Post 3 | Sumeet&#39;s Blog</title>
+<title>Post 3: Markdown Feature Showcase | Sumeet&#39;s Blog</title>
 
-    <link rel="stylesheet" href="/css/main.css">
-
+          <link rel="stylesheet" href="/css/main.css">
 
       <script src="/js/main.js"></script>
 
@@ -18,36 +17,246 @@
 <link rel="stylesheet" href="/css/main.css" >
 
 </head>
-<body>
+<body class="p-6 flex flex-col gap-8 max-w-4xl mx-auto">
   <header>
-    <h1>Sumeet&#39;s Blog</h1>
+    
 
-  <nav>
-    <ul>
-    <li>
-      <a href="/posts">Blogs</a>
-    </li>
-    </ul>
-  </nav>
+  <div class="flex gap-3">
+    <p>
+      <a href="/">Home</a>
+      </p>
+    <p>
+      <a aria-current="true" class="ancestor" href="/posts/">Posts</a>
+      </p>
+    <p>
+      <a href="/tags/">Tags</a>
+      </p>
+  </div>
 
 
   </header>
-  <main>
+  <main class="overflow-y-auto">
     
-  <h1>Post 3</h1>
+  <h1>Post 3: Markdown Feature Showcase</h1>
 
   
   
   <time datetime="2023-03-15T11:00:00-07:00">March 15, 2023</time>
 
-  <p>Occaecat aliqua consequat laborum ut ex aute aliqua culpa quis irure esse magna dolore quis. Proident fugiat labore eu laboris officia Lorem enim. Ipsum occaecat cillum ut tempor id sint aliqua incididunt nisi incididunt reprehenderit. Voluptate ad minim sint est aute aliquip esse occaecat tempor officia qui sunt. Aute ex ipsum id ut in est velit est laborum incididunt. Aliqua qui id do esse sunt eiusmod id deserunt eu nostrud aute sit ipsum. Deserunt esse cillum Lorem non magna adipisicing mollit amet consequat.</p>
-<p><img src="bryce-canyon.jpg" alt="Bryce Canyon National Park"></p>
-<p>Sit excepteur do velit veniam mollit in nostrud laboris incididunt ea. Amet eu cillum ut reprehenderit culpa aliquip labore laborum amet sit sit duis. Laborum id proident nostrud dolore laborum reprehenderit quis mollit nulla amet veniam officia id id. Aliquip in deserunt qui magna duis qui pariatur officia sunt deserunt.</p>
+  <p>This post serves as a comprehensive showcase of Markdown syntax, typography elements, and formatting features supported by Hugo and the <strong>smpl</strong> theme.</p>
+<hr>
+<h2 id="typography--inline-formatting">Typography &amp; Inline Formatting</h2>
+<p>Markdown allows rich inline text styling for readability and emphasis:</p>
+<ul>
+<li><strong>Bold text</strong>: <code>**bold**</code> renders as <strong>bold text</strong></li>
+<li><em>Italic text</em>: <code>*italic*</code> or <code>_italic_</code> renders as <em>italic text</em></li>
+<li><em><strong>Bold &amp; Italic</strong></em>: <code>***bold &amp; italic***</code> renders as <em><strong>bold and italicized text</strong></em></li>
+<li><del>Strikethrough</del>: <code>~~strikethrough~~</code> renders as <del>deleted or struck-through text</del></li>
+<li>Inline Code: <code>`const answer = 42;`</code> renders as <code>const answer = 42;</code></li>
+<li>Highlighted text: <code>&lt;mark&gt;highlighted&lt;/mark&gt;</code> renders as <!-- raw HTML omitted -->highlighted text<!-- raw HTML omitted --></li>
+<li>Keyboard shortcuts: <code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt; + &lt;kbd&gt;P&lt;/kbd&gt;</code> renders as <!-- raw HTML omitted -->Ctrl<!-- raw HTML omitted --> + <!-- raw HTML omitted -->Shift<!-- raw HTML omitted --> + <!-- raw HTML omitted -->P<!-- raw HTML omitted --></li>
+<li>Superscript &amp; Subscript: <code>H&lt;sub&gt;2&lt;/sub&gt;O</code> renders as H<!-- raw HTML omitted -->2<!-- raw HTML omitted -->O, and <code>E = mc&lt;sup&gt;2&lt;/sup&gt;</code> renders as E = mc<!-- raw HTML omitted -->2<!-- raw HTML omitted --></li>
+<li>Hyperlinks: <a href="https://gohugo.io" title="The world's fastest framework for building websites">Hugo Website</a> and auto-linked URLs like <a href="https://github.com">https://github.com</a>.</li>
+</ul>
+<hr>
+<h2 id="headings-hierarchy">Headings Hierarchy</h2>
+<p>Organizing content into semantic heading levels provides clean structure:</p>
+<h3 id="heading-level-3">Heading Level 3</h3>
+<p>Paragraph introducing a subtopic under heading 3. It flows naturally into subsections and provides clear visual separation.</p>
+<h4 id="heading-level-4">Heading Level 4</h4>
+<p>Detailed subsection covering specific points or technical breakdown.</p>
+<h5 id="heading-level-5">Heading Level 5</h5>
+<p>Fine-grained point or parameter breakdown.</p>
+<h6 id="heading-level-6">Heading Level 6</h6>
+<p>Lowest-level heading, useful for minor notations or dictionary definitions.</p>
+<hr>
+<h2 id="blockquotes--citations">Blockquotes &amp; Citations</h2>
+<p>Blockquotes are ideal for callouts, citations, and excerpts.</p>
+<blockquote>
+<p>&ldquo;Simplicity is prerequisite for reliability.&rdquo;</p>
+<p>— <strong>Edsger W. Dijkstra</strong></p>
+</blockquote>
+<h3 id="multi-paragraph--nested-quotes">Multi-paragraph &amp; Nested Quotes</h3>
+<blockquote>
+<p>Markdown is intended to be as easy-to-read and easy-to-write as is feasible.</p>
+<p>Readability, above all else, is emphasized. A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.</p>
+<blockquote>
+<p><em>Nested quote</em>: John Gruber, creator of Markdown.</p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="code-blocks--syntax-highlighting">Code Blocks &amp; Syntax Highlighting</h2>
+<p>Hugo provides fast, built-in Chroma syntax highlighting across multiple programming languages.</p>
+<h3 id="typescript--javascript">TypeScript / JavaScript</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">UserProfile</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isActive</span>: <span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">roles</span>: <span style="color:#66d9ef">string</span>[];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">formatGreeting</span>(<span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">UserProfile</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greeting</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">isActive</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;Welcome back&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Hello&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">greeting</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">username</span><span style="color:#e6db74">}</span><span style="color:#e6db74">! (Roles: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">roles</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;, &#34;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">currentUser</span>: <span style="color:#66d9ef">UserProfile</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;usr_101&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;alex_dev&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isActive</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">roles</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;admin&#34;</span>, <span style="color:#e6db74">&#34;editor&#34;</span>],
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">formatGreeting</span>(<span style="color:#a6e22e">currentUser</span>));
+</span></span></code></pre></div><h3 id="python">Python</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> dataclasses <span style="color:#f92672">import</span> dataclass
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> List
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@dataclass</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Article</span>:
+</span></span><span style="display:flex;"><span>    title: str
+</span></span><span style="display:flex;"><span>    tags: List[str]
+</span></span><span style="display:flex;"><span>    word_count: int
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reading_time_minutes</span>(self) <span style="color:#f92672">-&gt;</span> float:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Estimate reading time based on average 200 WPM.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> round(self<span style="color:#f92672">.</span>word_count <span style="color:#f92672">/</span> <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>post <span style="color:#f92672">=</span> Article(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Markdown Deep Dive&#34;</span>, tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;web&#34;</span>, <span style="color:#e6db74">&#34;hugo&#34;</span>], word_count<span style="color:#f92672">=</span><span style="color:#ae81ff">1250</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#39;</span><span style="color:#e6db74">{</span>post<span style="color:#f92672">.</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39; estimated reading time: </span><span style="color:#e6db74">{</span>post<span style="color:#f92672">.</span>reading_time_minutes<span style="color:#e6db74">}</span><span style="color:#e6db74"> min&#34;</span>)
+</span></span></code></pre></div><h3 id="git-diff">Git Diff</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#f92672">- const theme = &#34;dark-mode&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ const theme = &#34;system-preference&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ const autoSwitch = true;
+</span></span></span></code></pre></div><hr>
+<h2 id="lists">Lists</h2>
+<h3 id="unordered--nested-lists">Unordered &amp; Nested Lists</h3>
+<ul>
+<li>Web Development
+<ul>
+<li>Static Site Generators
+<ul>
+<li>Hugo (Fastest in Go)</li>
+<li>Astro</li>
+<li>11ty</li>
+</ul>
+</li>
+<li>Modern CSS
+<ul>
+<li>Tailwind CSS</li>
+<li>PostCSS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Content Design
+<ul>
+<li>Typography &amp; Hierarchy</li>
+<li>Semantic HTML Elements</li>
+</ul>
+</li>
+</ul>
+<h3 id="ordered-lists-with-steps">Ordered Lists with Steps</h3>
+<ol>
+<li><strong>Install Hugo</strong>: Download the extended version from GitHub releases or your package manager.</li>
+<li><strong>Initialize Site</strong>: Run <code>hugo new site my-blog --format toml</code>.</li>
+<li><strong>Add Theme</strong>: Clone or submodule your chosen theme into the <code>themes/</code> directory.</li>
+<li><strong>Publish Content</strong>: Create posts with <code>hugo new content posts/my-first-post.md</code>.</li>
+</ol>
+<h3 id="interactive-task-lists-gfm-checkboxes">Interactive Task Lists (GFM Checkboxes)</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Configure Hugo template engine and typography plugin</li>
+<li><input checked="" disabled="" type="checkbox"> Create reusable partials for header, footer, and navigation</li>
+<li><input checked="" disabled="" type="checkbox"> Add syntax highlighting and code block styling</li>
+<li><input disabled="" type="checkbox"> Implement full-text client-side search</li>
+<li><input disabled="" type="checkbox"> Add RSS feed autodiscovery link in <code>&lt;head&gt;</code></li>
+</ul>
+<hr>
+<h2 id="tables">Tables</h2>
+<p>GitHub Flavored Markdown tables support column alignment (left, center, right):</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Feature</th>
+          <th style="text-align: center">Syntax</th>
+          <th style="text-align: center">Status</th>
+          <th style="text-align: right">Support Level</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Headings</strong></td>
+          <td style="text-align: center"><code># H1</code> to <code>###### H6</code></td>
+          <td style="text-align: center">✅ Ready</td>
+          <td style="text-align: right">Native CommonMark</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Tables</strong></td>
+          <td style="text-align: center"><code>| col | col |</code></td>
+          <td style="text-align: center">✅ Ready</td>
+          <td style="text-align: right">GFM Extension</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Task Lists</strong></td>
+          <td style="text-align: center"><code>- [x] item</code></td>
+          <td style="text-align: center">✅ Ready</td>
+          <td style="text-align: right">GFM Extension</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Footnotes</strong></td>
+          <td style="text-align: center"><code>[^1]</code></td>
+          <td style="text-align: center">✅ Ready</td>
+          <td style="text-align: right">Goldmark Extension</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Math / LaTeX</strong></td>
+          <td style="text-align: center"><code>$$\sum x$$</code></td>
+          <td style="text-align: center">⚙️ Optional</td>
+          <td style="text-align: right">Passthrough / KaTeX</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="bundled-images--figures">Bundled Images &amp; Figures</h2>
+<p>Leaf bundles allow co-locating images directly inside the post&rsquo;s folder.</p>
+<p><img src="bryce-canyon.jpg" alt="Bryce Canyon National Park" title="Bryce Canyon National Park amphitheater and hoodoos"></p>
+<p><em>Figure 1: Bryce Canyon National Park, showcasing natural rock amphitheaters and towering red rock hoodoos.</em></p>
+<hr>
+<h2 id="collapsible-content-details--summary">Collapsible Content (Details &amp; Summary)</h2>
+<p>HTML <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags can be used in Markdown for expandable sections:</p>
+<!-- raw HTML omitted -->
+<p>Here are some extra details that stay hidden until toggled:</p>
+<ul>
+<li>You can customize Goldmark options in <code>hugo.toml</code> under <code>[markup.goldmark.renderer]</code>.</li>
+<li>Set <code>unsafe = true</code> if you want raw HTML inside Markdown files to render directly.</li>
+<li>Enable <code>[markup.tableOfContents]</code> to generate automatic tables of contents.</li>
+</ul>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="footnotes">Footnotes</h2>
+<p>Footnotes are an effective way to provide supplementary references without interrupting reading flow<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>You can reference multiple footnotes throughout your article<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> and Hugo automatically compiles them at the bottom of the page with back-links.</p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Markdown was originally created in 2004 by John Gruber with substantial contributions from Aaron Swartz.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Hugo uses Goldmark as its default Markdown parser, which is fast, compliant with CommonMark, and extensible.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
   
   <div>
     <div>Tags:</div>
     <ul>
+        <li><a href="/tags/markdown/">Markdown</a></li>
+        <li><a href="/tags/showcase/">Showcase</a></li>
+        <li><a href="/tags/typography/">Typography</a></li>
         <li><a href="/tags/red/">Red</a></li>
         <li><a href="/tags/green/">Green</a></li>
         <li><a href="/tags/blue/">Blue</a></li>

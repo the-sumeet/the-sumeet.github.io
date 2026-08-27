@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>System-Design on Sumeet&#39;s Blog</title>
-    <link>http://localhost:1313/tags/system-design/</link>
+    <link>http://localhost:1111/tags/system-design/</link>
     <description>Recent content in System-Design on Sumeet&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1111/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding OpenTelemetry</title>
-      <link>http://localhost:1313/posts/open-telemetry/</link>
+      <link>http://localhost:1111/posts/open-telemetry/</link>
       <pubDate>Sun, 05 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/open-telemetry/</guid>
+      <guid>http://localhost:1111/posts/open-telemetry/</guid>
       <description>&lt;p&gt;An observability framework has following steps in pipeline&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Generation/Instrumentation&lt;/strong&gt; is the &amp;ldquo;source&amp;rdquo; phase. Before you can observe a system, the system must emit data. This is typically done through Instrumentation.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We add code (either manually or via &amp;ldquo;auto-instrumentation&amp;rdquo; agents) to your application. This code creates Traces (to track requests), Metrics (to measure performance), and Logs (to record events).&lt;/li&gt;&#xA;&lt;li&gt;The framework provides standardized APIs so that no matter what language you use (Go, Python, Java), the data is formatted consistently.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Export&lt;/strong&gt; is the phace, where data generated in application&amp;rsquo;s memory leaves and exported to specific destination.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The framework provides &amp;ldquo;plugins&amp;rdquo; or drivers. If you want to send data to Prometheus, you use a Prometheus exporter. If you want to send it to an OTel Collector or a vendor like Honeycomb or Datadog, you use the OTLP (OpenTelemetry Protocol) exporter.&lt;/li&gt;&#xA;&lt;li&gt;It handles the heavy lifting of network protocols, retries if the connection fails, and batching data to ensure the application’s performance isn&amp;rsquo;t degraded by the act of observing it.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Collection&lt;/strong&gt; is performed by collector, which sits between the application and storage backend.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;It receives data from many different sources, &amp;ldquo;cleans&amp;rdquo; it, and then sends it to its final home.&lt;/li&gt;&#xA;&lt;li&gt;The Framework&amp;rsquo;s Job: It provides a vendor-agnostic way to:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Aggregate: Combine data from hundreds of microservices.&lt;/li&gt;&#xA;&lt;li&gt;Transform: Scrub sensitive data (like PII) before it leaves your network.&lt;/li&gt;&#xA;&lt;li&gt;Tail Sampling: Only save &amp;ldquo;interesting&amp;rdquo; traces (like errors or slow requests) to save on storage costs.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The framework does not provide a database to store the gigabytes of traces and metrics you generate. It simply delivers the package to the door. Storing telemetry is a massive scaling challenge. Different data types require different specialized databases. Common tools used here:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Design URL Shortner    </title>
-      <link>http://localhost:1313/posts/design-url-shortner/</link>
+      <link>http://localhost:1111/posts/design-url-shortner/</link>
       <pubDate>Sun, 22 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design-url-shortner/</guid>
+      <guid>http://localhost:1111/posts/design-url-shortner/</guid>
       <description>&lt;p&gt;URL shortners, like (tinyURL), maps a long URL to a short, unique key.&lt;/p&gt;&#xA;&lt;p&gt;The most fundamental task of a URL shortener is to take a long URL (the input) and generate a short, unique code (the alias). When a user visits &lt;code&gt;&amp;lt;domain&amp;gt;/abc123&lt;/code&gt;, our system looks up &lt;code&gt;abc123&lt;/code&gt; in the database and redirects them to the original long address.&lt;/p&gt;&#xA;&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;100 million URLs generated per day.&lt;/li&gt;&#xA;&lt;li&gt;1:10 write to read ratio.&lt;/li&gt;&#xA;&lt;li&gt;Maximum 10 characters long.&lt;/li&gt;&#xA;&lt;li&gt;Alphanumeric characters are allowed.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;calculations&#34;&gt;Calculations&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Since 100 million records added per day, we will have (100,000,000 / (24 * 60 * 60)) = &lt;strong&gt;1160 writes per seconds.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;As write to read ratio is 1:10, &lt;strong&gt;we will have 11600 reads per second.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;If we want our service to run for 10 years, &lt;strong&gt;we have to generate (100,000,000 * 365 * 10), which is 356 billion records.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;If we assume that the input length is 100 characters, which is 100 bytes, then &lt;strong&gt;for 10 years, we shall need 365 billion * 100 bytes = 36.5 TB of storage.&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;url-shortening&#34;&gt;URL shortening&lt;/h1&gt;&#xA;&lt;p&gt;There are two main ways to generate that short code:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Unique ID Generator</title>
-      <link>http://localhost:1313/posts/unique-id-generator/</link>
+      <link>http://localhost:1111/posts/unique-id-generator/</link>
       <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/unique-id-generator/</guid>
+      <guid>http://localhost:1111/posts/unique-id-generator/</guid>
       <description>&lt;p&gt;In a single database where you can just use an &lt;code&gt;auto_increment&lt;/code&gt; column, distributed systems have multiple nodes working simultaneously. If they don&amp;rsquo;t coordinate perfectly, they might accidentally hand out the same ID to two different users.&lt;/p&gt;&#xA;&lt;p&gt;To solve this, we need a strategy that ensures IDs are&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Unique and sortable.&lt;/li&gt;&#xA;&lt;li&gt;The system should be able to generate 10,000 IDs per second.&lt;/li&gt;&#xA;&lt;li&gt;Max 64 bits.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;common-approaches&#34;&gt;Common Approaches&lt;/h1&gt;&#xA;&lt;h2 id=&#34;uuid&#34;&gt;UUID&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;UUIDs are 128-bit number generated locally by each node using a combination of time, node ID, and randomness.&lt;/li&gt;&#xA;&lt;li&gt;Each server will generate unique number without any coordination.&lt;/li&gt;&#xA;&lt;li&gt;They are bulky (128 bits) and not naturally sortable (they&amp;rsquo;re random) by time, which can hurt database performance.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;ticket-server&#34;&gt;Ticket Server&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We can use a centralized server (ticket server) which will generate IDs for all the other servers.&lt;/li&gt;&#xA;&lt;li&gt;The ticket server becomes a &amp;ldquo;Single Point of Failure&amp;rdquo; (if it goes down, nobody gets an ID).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;twitter-snowflake-approach&#34;&gt;Twitter Snowflake Approach&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;In this approach, we can divide our unique ID in multiple parts. Like,&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Timestamp&lt;/li&gt;&#xA;&lt;li&gt;Machine ID&lt;/li&gt;&#xA;&lt;li&gt;Unique value&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;For tiemstamp, we can define 0 value to whatever we want. It can be UNIX epoch, snowflake epoch (Nov 04, 2010, 01:42:54 UTC), or our own custom epoch.&lt;/li&gt;&#xA;&lt;li&gt;Machine id is the identifier of the machine which has generated the ID.&lt;/li&gt;&#xA;&lt;li&gt;Unique value is the unique value, incremental or random, generated by the machine.&lt;/li&gt;&#xA;&lt;li&gt;The more bits we allocate for any section, we will get more values for that. For example, if we have more machines which might generate IDs, we have to allocate more bits for machine section.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Consistent Hashing</title>
-      <link>http://localhost:1313/posts/consistent-hashing/</link>
+      <link>http://localhost:1111/posts/consistent-hashing/</link>
       <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/consistent-hashing/</guid>
+      <guid>http://localhost:1111/posts/consistent-hashing/</guid>
       <description>&lt;p&gt;Consistent hashing is a technique used in distributed systems to distribute data across a changing set of nodes (like servers) with minimal disruption.&lt;/p&gt;&#xA;&lt;p&gt;In a traditional hashing system, if you add or remove a server, almost every single piece of data has to be moved to a new location. Consistent hashing solves this by ensuring that when the number of servers changes, only a small fraction of keys need to be remapped.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Design a Rate Limiter</title>
-      <link>http://localhost:1313/posts/design-rate-limiter/</link>
+      <link>http://localhost:1111/posts/design-rate-limiter/</link>
       <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design-rate-limiter/</guid>
+      <guid>http://localhost:1111/posts/design-rate-limiter/</guid>
       <description>&lt;p&gt;Designing a rate limiter is a classic problem in system design interviews. Its primary job is to control the rate of traffic sent by a client or a service to ensure the system remains stable and protected against abuse (like DDoS attacks) or cascading failures.&lt;/p&gt;&#xA;&lt;p&gt;We will discuss here the rate limiter algorithms (the &amp;ldquo;how&amp;rdquo; of the logic), the architecture (the &amp;ldquo;where&amp;rdquo; and &amp;ldquo;who&amp;rdquo;), and the high level requirements (the &amp;ldquo;what&amp;rdquo;), like low latency, high availability, and how to handle &amp;ldquo;hard&amp;rdquo; vs &amp;ldquo;soft&amp;rdquo; limits.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Design Distributed ID Generator</title>
-      <link>http://localhost:1313/posts/design-distributed-id-generator/</link>
+      <link>http://localhost:1111/posts/design-distributed-id-generator/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design-distributed-id-generator/</guid>
+      <guid>http://localhost:1111/posts/design-distributed-id-generator/</guid>
       <description>&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;&#xA;&lt;p&gt;In a distributed system with multiple servers/nodes, you can&amp;rsquo;t rely on simple auto-incrementing database IDs because:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Multiple nodes might generate the same ID simultaneously&lt;/li&gt;&#xA;&lt;li&gt;Coordination between nodes would be too slow&lt;/li&gt;&#xA;&lt;li&gt;You need globally unique IDs without a single point of failure&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This post explores how to design a distributed ID generator that can scale to hundreds of thousands of IDs per second across multiple data centers.&lt;/p&gt;&#xA;&lt;h2 id=&#34;requirements--constraints&#34;&gt;Requirements &amp;amp; Constraints&lt;/h2&gt;&#xA;&lt;h3 id=&#34;functional-requirements&#34;&gt;Functional Requirements&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Scale&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
   </channel>
