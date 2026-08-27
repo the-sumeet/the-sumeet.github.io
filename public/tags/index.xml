@@ -71,5 +71,47 @@
       <guid>http://localhost:1111/tags/rate-limiter/</guid>
       <description></description>
     </item>
+    <item>
+      <title>Blue</title>
+      <link>http://localhost:1111/tags/blue/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/tags/blue/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Green</title>
+      <link>http://localhost:1111/tags/green/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/tags/green/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Markdown</title>
+      <link>http://localhost:1111/tags/markdown/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/tags/markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red</title>
+      <link>http://localhost:1111/tags/red/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/tags/red/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Showcase</title>
+      <link>http://localhost:1111/tags/showcase/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/tags/showcase/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Typography</title>
+      <link>http://localhost:1111/tags/typography/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/tags/typography/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

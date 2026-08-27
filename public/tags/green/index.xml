@@ -2,24 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Green on Sumeet&#39;s Blog</title>
-    <link>http://localhost:1313/tags/green/</link>
+    <link>http://localhost:1111/tags/green/</link>
     <description>Recent content in Green on Sumeet&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Mar 2023 11:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/green/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1111/tags/green/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Post 3: Markdown Feature Showcase</title>
-      <link>http://localhost:1313/posts/post-3/</link>
+      <link>http://localhost:1111/posts/post-3/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/post-3/</guid>
+      <guid>http://localhost:1111/posts/post-3/</guid>
       <description>&lt;p&gt;This post serves as a comprehensive showcase of Markdown syntax, typography elements, and formatting features supported by Hugo and the &lt;strong&gt;smpl&lt;/strong&gt; theme.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;typography--inline-formatting&#34;&gt;Typography &amp;amp; Inline Formatting&lt;/h2&gt;&#xA;&lt;p&gt;Markdown allows rich inline text styling for readability and emphasis:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Bold text&lt;/strong&gt;: &lt;code&gt;**bold**&lt;/code&gt; renders as &lt;strong&gt;bold text&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;Italic text&lt;/em&gt;: &lt;code&gt;*italic*&lt;/code&gt; or &lt;code&gt;_italic_&lt;/code&gt; renders as &lt;em&gt;italic text&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;&lt;strong&gt;Bold &amp;amp; Italic&lt;/strong&gt;&lt;/em&gt;: &lt;code&gt;***bold &amp;amp; italic***&lt;/code&gt; renders as &lt;em&gt;&lt;strong&gt;bold and italicized text&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;del&gt;Strikethrough&lt;/del&gt;: &lt;code&gt;~~strikethrough~~&lt;/code&gt; renders as &lt;del&gt;deleted or struck-through text&lt;/del&gt;&lt;/li&gt;&#xA;&lt;li&gt;Inline Code: &lt;code&gt;`const answer = 42;`&lt;/code&gt; renders as &lt;code&gt;const answer = 42;&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Highlighted text: &lt;code&gt;&amp;lt;mark&amp;gt;highlighted&amp;lt;/mark&amp;gt;&lt;/code&gt; renders as &lt;!-- raw HTML omitted --&gt;highlighted text&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;&#xA;&lt;li&gt;Keyboard shortcuts: &lt;code&gt;&amp;lt;kbd&amp;gt;Ctrl&amp;lt;/kbd&amp;gt; + &amp;lt;kbd&amp;gt;Shift&amp;lt;/kbd&amp;gt; + &amp;lt;kbd&amp;gt;P&amp;lt;/kbd&amp;gt;&lt;/code&gt; renders as &lt;!-- raw HTML omitted --&gt;Ctrl&lt;!-- raw HTML omitted --&gt; + &lt;!-- raw HTML omitted --&gt;Shift&lt;!-- raw HTML omitted --&gt; + &lt;!-- raw HTML omitted --&gt;P&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;&#xA;&lt;li&gt;Superscript &amp;amp; Subscript: &lt;code&gt;H&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;O&lt;/code&gt; renders as H&lt;!-- raw HTML omitted --&gt;2&lt;!-- raw HTML omitted --&gt;O, and &lt;code&gt;E = mc&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt;&lt;/code&gt; renders as E = mc&lt;!-- raw HTML omitted --&gt;2&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;&#xA;&lt;li&gt;Hyperlinks: &lt;a href=&#34;https://gohugo.io&#34; title=&#34;The world&#39;s fastest framework for building websites&#34;&gt;Hugo Website&lt;/a&gt; and auto-linked URLs like &lt;a href=&#34;https://github.com&#34;&gt;https://github.com&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;headings-hierarchy&#34;&gt;Headings Hierarchy&lt;/h2&gt;&#xA;&lt;p&gt;Organizing content into semantic heading levels provides clean structure:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Post 2</title>
-      <link>http://localhost:1313/posts/post-2/</link>
+      <link>http://localhost:1111/posts/post-2/</link>
       <pubDate>Wed, 15 Feb 2023 10:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/post-2/</guid>
+      <guid>http://localhost:1111/posts/post-2/</guid>
+      <description>&lt;p&gt;Anim eiusmod irure incididunt sint cupidatat. Incididunt irure irure irure nisi ipsum do ut quis fugiat consectetur proident cupidatat incididunt cillum. Dolore voluptate occaecat qui mollit laborum ullamco et. Ipsum laboris officia anim laboris culpa eiusmod ex magna ex cupidatat anim ipsum aute. Mollit aliquip occaecat qui sunt velit ut cupidatat reprehenderit enim sunt laborum. Velit veniam in officia nulla adipisicing ut duis officia.&lt;/p&gt;&#xA;&lt;p&gt;Exercitation voluptate irure in irure tempor mollit Lorem nostrud ad officia. Velit id fugiat occaecat do tempor. Sit officia Lorem aliquip eu deserunt consectetur. Aute proident deserunt in nulla aliquip dolore ipsum Lorem ut cupidatat consectetur sit sint laborum. Esse cupidatat sit sint sunt tempor exercitation deserunt. Labore dolor duis laborum est do nisi ut veniam dolor et nostrud nostrud.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redirect Example</title>
+      <link>http://localhost:1111/posts/redirect/</link>
+      <pubDate>Wed, 15 Feb 2023 10:00:00 -0700</pubDate>
+      <guid>http://localhost:1111/posts/redirect/</guid>
       <description>&lt;p&gt;Anim eiusmod irure incididunt sint cupidatat. Incididunt irure irure irure nisi ipsum do ut quis fugiat consectetur proident cupidatat incididunt cillum. Dolore voluptate occaecat qui mollit laborum ullamco et. Ipsum laboris officia anim laboris culpa eiusmod ex magna ex cupidatat anim ipsum aute. Mollit aliquip occaecat qui sunt velit ut cupidatat reprehenderit enim sunt laborum. Velit veniam in officia nulla adipisicing ut duis officia.&lt;/p&gt;&#xA;&lt;p&gt;Exercitation voluptate irure in irure tempor mollit Lorem nostrud ad officia. Velit id fugiat occaecat do tempor. Sit officia Lorem aliquip eu deserunt consectetur. Aute proident deserunt in nulla aliquip dolore ipsum Lorem ut cupidatat consectetur sit sint laborum. Esse cupidatat sit sint sunt tempor exercitation deserunt. Labore dolor duis laborum est do nisi ut veniam dolor et nostrud nostrud.&lt;/p&gt;</description>
     </item>
   </channel>
