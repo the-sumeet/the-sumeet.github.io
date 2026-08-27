@@ -1,7 +1,7 @@
 baseURL = 'https://the-sumeet.github.io/'
 languageCode = 'en-us'
 title = "Sumeet's Blog"
-theme = 'terminal'
+theme = 'simple'
  
 [pagination]
   pagerSize = 10

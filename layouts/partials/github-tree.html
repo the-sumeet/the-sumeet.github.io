@@ -17,19 +17,36 @@
     display: flex;
     height: 500px;
     border: 1px solid #8c959f; /* Darkened border for better contrast */
-    border-radius: 6px;
     overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    background-color: #ffffff; /* Force background */
-    color: #24292f; /* Force text color to ensure contrast */
 }
 
 .editor-sidebar {
     width: 250px;
-    flex-shrink: 0; /* FIX 1: This stops the sidebar from being squished away */
-    background-color: #f6f8fa;
+    flex-shrink: 0;
     border-right: 1px solid #d0d7de;
     overflow-y: auto;
+}
+
+.editor-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.file-path-header {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.code-view {
+    flex: 1;
+    overflow: auto;
+    margin: 0;
+    padding: 12px;
 }
 
 .sidebar-header {
@@ -37,45 +54,33 @@
     font-weight: bold;
     font-size: 12px;
     text-transform: uppercase;
-    color: #57606a;
     border-bottom: 1px solid #d0d7de;
 }
 
-.file-list { list-style: none; padding: 0; margin: 0; }
-.file-list li {
+.folder-name {
     padding: 6px 12px;
     cursor: pointer;
     font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #24292f; /* Explicit text color */
-}
-.file-list li:hover { background-color: #e2e6ea; } /* Slightly darker hover state */
-.file-list li.active { background-color: #ffffff; font-weight: bold; border-left: 3px solid #0969da; padding-left: 9px; } /* Added a blue line to show active file */
-
-.editor-main { 
-    flex: 1; 
-    min-width: 0; /* FIX 2: Forces the main container to respect the screen size, keeping the sidebar safe */
-    display: flex; 
-    flex-direction: column; 
-    background: #ffffff; 
+    user-select: none;
+    display: flex;
+    align-items: center;
 }
 
-.file-path-header { 
-    padding: 10px; 
-    background: #f6f8fa; 
-    border-bottom: 1px solid #d0d7de; 
-    font-size: 13px;
-    color: #57606a;
+.folder-name:hover {
 }
 
-.code-view { 
-    margin: 0; 
-    padding: 20px; 
-    overflow: auto; /* FIX 3: Ensures scrollbars appear on the code, not the whole widget */
-    flex: 1; 
-    font-size: 13px; 
-    color: #24292f;
+.file-list ul {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+    display: none;
+}
+
+.folder.open > ul {
+    display: block;
+}
+
+.file-list li.file {
+    padding: 6px 12px 6px 24px;
 }
 </style>

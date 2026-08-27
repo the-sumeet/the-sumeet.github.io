@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Understanding OpenTelemetry | Sumeet&#39;s Blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" >
+
+</head>
+<body>
+  <header>
+    <h1>Sumeet&#39;s Blog</h1>
+
+  <nav>
+    <ul>
+    <li>
+      <a href="/posts">Blogs</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+  <h1>Understanding OpenTelemetry</h1>
+
+  
+  
+  <time datetime="2026-04-05T00:00:00&#43;00:00">April 5, 2026</time>
+
+  <p>An observability framework has following steps in pipeline</p>
+<ul>
+<li><strong>Generation/Instrumentation</strong> is the &ldquo;source&rdquo; phase. Before you can observe a system, the system must emit data. This is typically done through Instrumentation.
+<ul>
+<li>We add code (either manually or via &ldquo;auto-instrumentation&rdquo; agents) to your application. This code creates Traces (to track requests), Metrics (to measure performance), and Logs (to record events).</li>
+<li>The framework provides standardized APIs so that no matter what language you use (Go, Python, Java), the data is formatted consistently.</li>
+</ul>
+</li>
+<li><strong>Export</strong> is the phace, where data generated in application&rsquo;s memory leaves and exported to specific destination.
+<ul>
+<li>The framework provides &ldquo;plugins&rdquo; or drivers. If you want to send data to Prometheus, you use a Prometheus exporter. If you want to send it to an OTel Collector or a vendor like Honeycomb or Datadog, you use the OTLP (OpenTelemetry Protocol) exporter.</li>
+<li>It handles the heavy lifting of network protocols, retries if the connection fails, and batching data to ensure the application’s performance isn&rsquo;t degraded by the act of observing it.</li>
+</ul>
+</li>
+<li><strong>Collection</strong> is performed by collector, which sits between the application and storage backend.
+<ul>
+<li>It receives data from many different sources, &ldquo;cleans&rdquo; it, and then sends it to its final home.</li>
+<li>The Framework&rsquo;s Job: It provides a vendor-agnostic way to:
+<ul>
+<li>Aggregate: Combine data from hundreds of microservices.</li>
+<li>Transform: Scrub sensitive data (like PII) before it leaves your network.</li>
+<li>Tail Sampling: Only save &ldquo;interesting&rdquo; traces (like errors or slow requests) to save on storage costs.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The framework does not provide a database to store the gigabytes of traces and metrics you generate. It simply delivers the package to the door. Storing telemetry is a massive scaling challenge. Different data types require different specialized databases. Common tools used here:</p>
+<ul>
+<li>Prometheus / VictoriaMetrics: Optimized for time-series metrics.</li>
+<li>Jaeger / Tempo: Designed specifically to index and store traces.</li>
+<li>ClickHouse / DuckDB: Often used for high-performance log and trace analysis.</li>
+</ul>
+<p>The framework doesn&rsquo;t provide the &ldquo;single pane of glass&rdquo; or the dashboards you look at during an incident. It provides the raw material, not the UI. Visualization is subjective. One team might want a real-time heat map, while another wants a simple line graph or an automated Slack alert. Common tools used here:</p>
+<ul>
+<li>Grafana: The industry standard for building dashboards that pull from multiple backends.</li>
+<li>Jaeger UI: A specialized interface specifically for visualizing the &ldquo;waterfall&rdquo; flow of distributed traces.</li>
+</ul>
+<h1 id="instrumentation">Instrumentation</h1>
+<p>Zero code instrumentation (or auto instrumentation), is the &ldquo;Path of Least Resistance&rdquo; for getting observability into an application. Instead of we manually writing code to start timers or log metadata, the agent does it for you by &ldquo;hooking&rdquo; into your runtime.</p>
+<p>When you run your application via the opentelemetry-instrument agent, it intercepts calls to popular libraries (like <code>FastAPI</code>, <code>Flask</code>, <code>requests</code>, or <code>SQLAlchemy</code>).</p>
+<p>If your app makes a database query, the agent &ldquo;sees&rdquo; it, measures how long it took, and automatically creates a Span for that query.</p>
+<p>I will be using <code>Python</code> programming lanague, with <code>fastapi</code> for api server.</p>
+<p>To get started with zeo code instrumentation, install the following package <code>opentelemetry-distro</code>. When you install opentelemetry-distro, it sets up several critical components behind the scenes:</p>
+<ul>
+<li>SDK <code>TracerProvider</code>: The engine that manages the creation of spans.</li>
+<li><code>BatchSpanProcessor</code>: A performance-critical component that buffers spans and sends them in groups rather than one-by-one (which would overwhelm your network).</li>
+<li>Default Exporters: It usually defaults to the OTLP (OpenTelemetry Protocol) exporter, assuming you will be sending data to an OTel Collector.</li>
+<li>Auto-Instrumentation Entry Points: It registers the &ldquo;hooks&rdquo; that the opentelemetry-instrument agent uses to find your code and start tracing.</li>
+</ul>
+<h2 id="traces">Traces</h2>
+<p>Check out the source code for this project:</p>
+<div class="github-editor-container" data-repo="the-sumeet/fastapi-otel" data-sha="afe1574ab1c92e3ebe26b648c2885965f9a22c87">
+    <div class="editor-sidebar">
+        <div class="sidebar-header">Files</div>
+        <ul class="file-list"><li>Loading...</li></ul>
+    </div>
+    <div class="editor-main">
+        <div class="file-path-header">Select a file to view code</div>
+        <pre class="code-view"><code>// Code will appear here</code></pre>
+    </div>
+</div>
+
+
+<script src="/js/github-browser.js"></script>
+
+<style>
+.github-editor-container {
+    display: flex;
+    height: 500px;
+    border: 1px solid #8c959f;  
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.editor-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    border-right: 1px solid #d0d7de;
+    overflow-y: auto;
+}
+
+.editor-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.file-path-header {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.code-view {
+    flex: 1;
+    overflow: auto;
+    margin: 0;
+    padding: 12px;
+}
+
+.sidebar-header {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.folder-name {
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+.folder-name:hover {
+}
+
+.file-list ul {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+    display: none;
+}
+
+.folder.open > ul {
+    display: block;
+}
+
+.file-list li.file {
+    padding: 6px 12px 6px 24px;
+}
+</style>
+<p>This is what printed on console when I make request to <code>/</code> endpont:</p>
+<pre tabindex="0"><code>api-1  | INFO:     172.22.0.1:59978 - &#34;GET / HTTP/1.1&#34; 200 OK
+api-1  | {
+api-1  |     &#34;name&#34;: &#34;GET / http send&#34;,
+api-1  |     &#34;context&#34;: {
+api-1  |         &#34;trace_id&#34;: &#34;0x7a940289e3235f398429846d25f1b25f&#34;,
+api-1  |         &#34;span_id&#34;: &#34;0xc2e92b7c5b9e6d61&#34;,
+api-1  |         &#34;trace_state&#34;: &#34;[]&#34;
+api-1  |     },
+api-1  |     &#34;kind&#34;: &#34;SpanKind.INTERNAL&#34;,
+api-1  |     &#34;parent_id&#34;: &#34;0x2b6289693d7877cb&#34;,
+api-1  |     &#34;start_time&#34;: &#34;2026-05-07T12:36:25.787835Z&#34;,
+api-1  |     &#34;end_time&#34;: &#34;2026-05-07T12:36:25.787871Z&#34;,
+api-1  |     &#34;status&#34;: {
+api-1  |         &#34;status_code&#34;: &#34;UNSET&#34;
+api-1  |     },
+api-1  |     &#34;attributes&#34;: {
+api-1  |         &#34;asgi.event.type&#34;: &#34;http.response.start&#34;,
+api-1  |         &#34;http.status_code&#34;: 200
+api-1  |     },
+api-1  |     &#34;events&#34;: [],
+api-1  |     &#34;links&#34;: [],
+api-1  |     &#34;resource&#34;: {
+api-1  |         &#34;attributes&#34;: {
+api-1  |             &#34;telemetry.sdk.language&#34;: &#34;python&#34;,
+api-1  |             &#34;telemetry.sdk.name&#34;: &#34;opentelemetry&#34;,
+api-1  |             &#34;telemetry.sdk.version&#34;: &#34;1.41.1&#34;,
+api-1  |             &#34;service.name&#34;: &#34;my_api_service&#34;,
+api-1  |             &#34;telemetry.auto.version&#34;: &#34;0.62b1&#34;
+api-1  |         },
+api-1  |         &#34;schema_url&#34;: &#34;&#34;
+api-1  |     }
+api-1  | }
+api-1  | {
+api-1  |     &#34;name&#34;: &#34;GET / http send&#34;,
+api-1  |     &#34;context&#34;: {
+api-1  |         &#34;trace_id&#34;: &#34;0x7a940289e3235f398429846d25f1b25f&#34;,
+api-1  |         &#34;span_id&#34;: &#34;0xdb3a35110889746b&#34;,
+api-1  |         &#34;trace_state&#34;: &#34;[]&#34;
+api-1  |     },
+api-1  |     &#34;kind&#34;: &#34;SpanKind.INTERNAL&#34;,
+api-1  |     &#34;parent_id&#34;: &#34;0x2b6289693d7877cb&#34;,
+api-1  |     &#34;start_time&#34;: &#34;2026-05-07T12:36:25.788230Z&#34;,
+api-1  |     &#34;end_time&#34;: &#34;2026-05-07T12:36:25.788240Z&#34;,
+api-1  |     &#34;status&#34;: {
+api-1  |         &#34;status_code&#34;: &#34;UNSET&#34;
+api-1  |     },
+api-1  |     &#34;attributes&#34;: {
+api-1  |         &#34;asgi.event.type&#34;: &#34;http.response.body&#34;
+api-1  |     },
+api-1  |     &#34;events&#34;: [],
+api-1  |     &#34;links&#34;: [],
+api-1  |     &#34;resource&#34;: {
+api-1  |         &#34;attributes&#34;: {
+api-1  |             &#34;telemetry.sdk.language&#34;: &#34;python&#34;,
+api-1  |             &#34;telemetry.sdk.name&#34;: &#34;opentelemetry&#34;,
+api-1  |             &#34;telemetry.sdk.version&#34;: &#34;1.41.1&#34;,
+api-1  |             &#34;service.name&#34;: &#34;my_api_service&#34;,
+api-1  |             &#34;telemetry.auto.version&#34;: &#34;0.62b1&#34;
+api-1  |         },
+api-1  |         &#34;schema_url&#34;: &#34;&#34;
+api-1  |     }
+api-1  | }
+api-1  | {
+api-1  |     &#34;name&#34;: &#34;GET /&#34;,
+api-1  |     &#34;context&#34;: {
+api-1  |         &#34;trace_id&#34;: &#34;0x7a940289e3235f398429846d25f1b25f&#34;,
+api-1  |         &#34;span_id&#34;: &#34;0x2b6289693d7877cb&#34;,
+api-1  |         &#34;trace_state&#34;: &#34;[]&#34;
+api-1  |     },
+api-1  |     &#34;kind&#34;: &#34;SpanKind.SERVER&#34;,
+api-1  |     &#34;parent_id&#34;: null,
+api-1  |     &#34;start_time&#34;: &#34;2026-05-07T12:36:25.786770Z&#34;,
+api-1  |     &#34;end_time&#34;: &#34;2026-05-07T12:36:25.788277Z&#34;,
+api-1  |     &#34;status&#34;: {
+api-1  |         &#34;status_code&#34;: &#34;UNSET&#34;
+api-1  |     },
+api-1  |     &#34;attributes&#34;: {
+api-1  |         &#34;http.scheme&#34;: &#34;http&#34;,
+api-1  |         &#34;http.host&#34;: &#34;172.22.0.2:8000&#34;,
+api-1  |         &#34;net.host.port&#34;: 8000,
+api-1  |         &#34;http.flavor&#34;: &#34;1.1&#34;,
+api-1  |         &#34;http.target&#34;: &#34;/&#34;,
+api-1  |         &#34;http.url&#34;: &#34;http://127.0.0.1:8000/&#34;,
+api-1  |         &#34;http.method&#34;: &#34;GET&#34;,
+api-1  |         &#34;http.server_name&#34;: &#34;127.0.0.1:8000&#34;,
+api-1  |         &#34;http.user_agent&#34;: &#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:150.0) Gecko/20100101 Firefox/150.0&#34;,
+api-1  |         &#34;net.peer.ip&#34;: &#34;172.22.0.1&#34;,
+api-1  |         &#34;net.peer.port&#34;: 59978,
+api-1  |         &#34;http.route&#34;: &#34;/&#34;,
+api-1  |         &#34;http.status_code&#34;: 200
+api-1  |     },
+api-1  |     &#34;events&#34;: [],
+api-1  |     &#34;links&#34;: [],
+api-1  |     &#34;resource&#34;: {
+api-1  |         &#34;attributes&#34;: {
+api-1  |             &#34;telemetry.sdk.language&#34;: &#34;python&#34;,
+api-1  |             &#34;telemetry.sdk.name&#34;: &#34;opentelemetry&#34;,
+api-1  |             &#34;telemetry.sdk.version&#34;: &#34;1.41.1&#34;,
+api-1  |             &#34;service.name&#34;: &#34;my_api_service&#34;,
+api-1  |             &#34;telemetry.auto.version&#34;: &#34;0.62b1&#34;
+api-1  |         },
+api-1  |         &#34;schema_url&#34;: &#34;&#34;
+api-1  |     }
+api-1  | }
+</code></pre><p>The line <code>INFO:     172.22.0.1:59978 - &quot;GET / HTTP/1.1&quot; 200 OK</code> tells you what happened (a 200 OK), but not how it happened. This is where OTel takes over to provide the &ldquo;how.&rdquo;</p>
+<p>The three JSON blobs that follow are all part of the same request. You can tell because they all share the exact same trace_id: <code>0x7a940289e3235f398429846d25f1b25f</code>.</p>
+<h3 id="a-the-parent-span">A. The Parent Span</h3>
+<p>Look for the one named <code>GET /</code> with <code>kind&quot;: &quot;SpanKind.SERVER</code>.</p>
+<p><code>parent_id&quot;: null</code> This is the &ldquo;Root Span.&rdquo; It represents the total time the server spent on this request.</p>
+<p>Duration: It started at .786 and ended at .788 seconds.</p>
+<h3 id="b-the-child-spans">B. The Child Spans</h3>
+<p>The other two spans named <code>GET / http send</code> are children of the parent.</p>
+<p><code>parent_id: 0x2b6289693d7877cb</code> Notice this ID matches the span_id of the parent GET / span.</p>
+<p><code>asgi.event.type</code> since FastAPI is an ASGI framework, the OTel agent is catching the specific moments the server started the response (<code>http.response.start</code>) and finished sending the body (<code>http.response.body</code>).</p>
+<h2 id="metrics">Metrics</h2>
+<p>Metrics are &ldquo;time-driven.&rdquo;, they are snapshots of your system&rsquo;s health.</p>
+<p>It aggregates data (like how many total requests have hit /) over a period of time. Every 60 seconds (the default interval), it &ldquo;exports&rdquo; the current totals to your terminal.</p>
+<p>You should see JSON like following after certain interval,</p>
+<pre tabindex="0"><code>{
+    &#34;resource_metrics&#34;: [
+        {
+            &#34;scope_metrics&#34;: [
+                {
+                    &#34;metrics&#34;: [
+                        {
+                            &#34;name&#34;: &#34;http.server.request.duration&#34;,
+                            &#34;data&#34;: {
+                                &#34;data_points&#34;: [
+                                    {
+                                        &#34;count&#34;: 15,
+                                        &#34;sum&#34;: 1240.5,
+                                        &#34;min&#34;: 2.1,
+                                        &#34;max&#34;: 450.0,
+                                        &#34;attributes&#34;: { &#34;http.method&#34;: &#34;GET&#34;, &#34;http.route&#34;: &#34;/&#34; }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+</code></pre><h2 id="logs">Logs</h2>
+<p>The OTel agent can automatically &ldquo;bridge&rdquo; your standard Python logs into the OpenTelemetry pipeline. When you use <code>logging.info(&quot;hello&quot;)</code>, OTel intercepts it and attaches the current <code>trace_id</code>.</p>
+<p>We have following log added in API endpoint:</p>
+<pre tabindex="0"><code>import logging
+
+logger = logging.getLogger(__name__)
+
+@app.get(&#34;/&#34;)
+def read_root():
+    logger.info(&#34;This log will now include the trace_id automatically!&#34;)
+    return {&#34;Hello&#34;: &#34;World&#34;}
+</code></pre><p>You should see following printed in console</p>
+<pre tabindex="0"><code>api-1  | {
+api-1  |     &#34;body&#34;: &#34;This log will now include the trace_id automatically!&#34;,
+api-1  |     &#34;severity_number&#34;: 9,
+api-1  |     &#34;severity_text&#34;: &#34;INFO&#34;,
+api-1  |     &#34;attributes&#34;: null,
+api-1  |     &#34;dropped_attributes&#34;: 0,
+api-1  |     &#34;timestamp&#34;: &#34;2026-05-07T23:13:26.229884Z&#34;,
+api-1  |     &#34;observed_timestamp&#34;: &#34;2026-05-07T23:13:26.230003Z&#34;,
+api-1  |     &#34;trace_id&#34;: &#34;0x57035260c923bedb509e7e37d24f937a&#34;,
+api-1  |     &#34;span_id&#34;: &#34;0x29937cba6e339b85&#34;,
+api-1  |     &#34;trace_flags&#34;: 1,
+api-1  |     &#34;resource&#34;: {
+api-1  |         &#34;attributes&#34;: {
+api-1  |             &#34;telemetry.sdk.language&#34;: &#34;python&#34;,
+api-1  |             &#34;telemetry.sdk.name&#34;: &#34;opentelemetry&#34;,
+api-1  |             &#34;telemetry.sdk.version&#34;: &#34;1.41.1&#34;,
+api-1  |             &#34;service.name&#34;: &#34;my_api_service&#34;,
+api-1  |             &#34;telemetry.auto.version&#34;: &#34;0.62b1&#34;
+api-1  |         },
+api-1  |         &#34;schema_url&#34;: &#34;&#34;
+api-1  |     },
+api-1  |     &#34;event_name&#34;: &#34;&#34;
+api-1  | }
+</code></pre><h1 id="visualization">Visualization</h1>
+<p>For visualization, we shall be using Grafana with different storage backends.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Signal</th>
+          <th>Storage Backend</th>
+          <th>Visualization  UI</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Traces</td>
+          <td>Tempo (or Jaeger)</td>
+          <td>Grafana (Explore tab)</td>
+      </tr>
+      <tr>
+          <td>Metrics</td>
+          <td>Prometheus (or Mimir)</td>
+          <td>Grafana (Dashboards)</td>
+      </tr>
+      <tr>
+          <td>Logs</td>
+          <td>Loki</td>
+          <td>Grafana (Log Explorer)</td>
+      </tr>
+  </tbody>
+</table>
+<p>The signals (traces, metrics, and logs) from services will be sent to the Collector, so that,</p>
+<ul>
+<li>Our app doesn&rsquo;t waste CPU cycles formatting data for three different databases. It sends it once via OTLP.</li>
+<li>We can tell the Collector: &ldquo;Only save traces that take longer than 500ms or result in an error.&rdquo;</li>
+<li>We can scrub sensitive user data (like PII) in the Collector before it ever hits your storage.</li>
+</ul>
+
+  
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/uurl-shortner/">Uurl-Shortner</a></li>
+        <li><a href="/tags/system-design/">System-Design</a></li>
+    </ul>
+  </div>
+
+
+  </main>
+  <footer>
+    <p>Copyright 2026. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

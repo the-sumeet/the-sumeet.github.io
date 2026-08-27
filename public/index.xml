@@ -6,8 +6,22 @@
     <description>Recent content in Home on Sumeet&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Full Text search with Postgres</title>
+      <link>http://localhost:1313/posts/postgres-full-text-search/</link>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/postgres-full-text-search/</guid>
+      <description>&lt;p&gt;PostgreSQL offers a powerful, built-in full text search engine that allows us to search through unstructured text using linguistic rules rather than simple pattern matching (like &lt;code&gt;LIKE&lt;/code&gt; or &lt;code&gt;regex&lt;/code&gt;). In this article, we shall understand what those features are.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Understanding OpenTelemetry</title>
+      <link>http://localhost:1313/posts/open-telemetry/</link>
+      <pubDate>Sun, 05 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/open-telemetry/</guid>
+      <description>&lt;p&gt;An observability framework has following steps in pipeline&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Generation/Instrumentation&lt;/strong&gt; is the &amp;ldquo;source&amp;rdquo; phase. Before you can observe a system, the system must emit data. This is typically done through Instrumentation.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We add code (either manually or via &amp;ldquo;auto-instrumentation&amp;rdquo; agents) to your application. This code creates Traces (to track requests), Metrics (to measure performance), and Logs (to record events).&lt;/li&gt;&#xA;&lt;li&gt;The framework provides standardized APIs so that no matter what language you use (Go, Python, Java), the data is formatted consistently.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Export&lt;/strong&gt; is the phace, where data generated in application&amp;rsquo;s memory leaves and exported to specific destination.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The framework provides &amp;ldquo;plugins&amp;rdquo; or drivers. If you want to send data to Prometheus, you use a Prometheus exporter. If you want to send it to an OTel Collector or a vendor like Honeycomb or Datadog, you use the OTLP (OpenTelemetry Protocol) exporter.&lt;/li&gt;&#xA;&lt;li&gt;It handles the heavy lifting of network protocols, retries if the connection fails, and batching data to ensure the application’s performance isn&amp;rsquo;t degraded by the act of observing it.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Collection&lt;/strong&gt; is performed by collector, which sits between the application and storage backend.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;It receives data from many different sources, &amp;ldquo;cleans&amp;rdquo; it, and then sends it to its final home.&lt;/li&gt;&#xA;&lt;li&gt;The Framework&amp;rsquo;s Job: It provides a vendor-agnostic way to:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Aggregate: Combine data from hundreds of microservices.&lt;/li&gt;&#xA;&lt;li&gt;Transform: Scrub sensitive data (like PII) before it leaves your network.&lt;/li&gt;&#xA;&lt;li&gt;Tail Sampling: Only save &amp;ldquo;interesting&amp;rdquo; traces (like errors or slow requests) to save on storage costs.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The framework does not provide a database to store the gigabytes of traces and metrics you generate. It simply delivers the package to the door. Storing telemetry is a massive scaling challenge. Different data types require different specialized databases. Common tools used here:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Design URL Shortner    </title>
       <link>http://localhost:1313/posts/design-url-shortner/</link>
@@ -42,6 +56,27 @@
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/design-distributed-id-generator/</guid>
       <description>&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;&#xA;&lt;p&gt;In a distributed system with multiple servers/nodes, you can&amp;rsquo;t rely on simple auto-incrementing database IDs because:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Multiple nodes might generate the same ID simultaneously&lt;/li&gt;&#xA;&lt;li&gt;Coordination between nodes would be too slow&lt;/li&gt;&#xA;&lt;li&gt;You need globally unique IDs without a single point of failure&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This post explores how to design a distributed ID generator that can scale to hundreds of thousands of IDs per second across multiple data centers.&lt;/p&gt;&#xA;&lt;h2 id=&#34;requirements--constraints&#34;&gt;Requirements &amp;amp; Constraints&lt;/h2&gt;&#xA;&lt;h3 id=&#34;functional-requirements&#34;&gt;Functional Requirements&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Scale&lt;/strong&gt;:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Post 3</title>
+      <link>http://localhost:1313/posts/post-3/</link>
+      <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/post-3/</guid>
+      <description>&lt;p&gt;Occaecat aliqua consequat laborum ut ex aute aliqua culpa quis irure esse magna dolore quis. Proident fugiat labore eu laboris officia Lorem enim. Ipsum occaecat cillum ut tempor id sint aliqua incididunt nisi incididunt reprehenderit. Voluptate ad minim sint est aute aliquip esse occaecat tempor officia qui sunt. Aute ex ipsum id ut in est velit est laborum incididunt. Aliqua qui id do esse sunt eiusmod id deserunt eu nostrud aute sit ipsum. Deserunt esse cillum Lorem non magna adipisicing mollit amet consequat.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Post 2</title>
+      <link>http://localhost:1313/posts/post-2/</link>
+      <pubDate>Wed, 15 Feb 2023 10:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/post-2/</guid>
+      <description>&lt;p&gt;Anim eiusmod irure incididunt sint cupidatat. Incididunt irure irure irure nisi ipsum do ut quis fugiat consectetur proident cupidatat incididunt cillum. Dolore voluptate occaecat qui mollit laborum ullamco et. Ipsum laboris officia anim laboris culpa eiusmod ex magna ex cupidatat anim ipsum aute. Mollit aliquip occaecat qui sunt velit ut cupidatat reprehenderit enim sunt laborum. Velit veniam in officia nulla adipisicing ut duis officia.&lt;/p&gt;&#xA;&lt;p&gt;Exercitation voluptate irure in irure tempor mollit Lorem nostrud ad officia. Velit id fugiat occaecat do tempor. Sit officia Lorem aliquip eu deserunt consectetur. Aute proident deserunt in nulla aliquip dolore ipsum Lorem ut cupidatat consectetur sit sint laborum. Esse cupidatat sit sint sunt tempor exercitation deserunt. Labore dolor duis laborum est do nisi ut veniam dolor et nostrud nostrud.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Post 1</title>
+      <link>http://localhost:1313/posts/post-1/</link>
+      <pubDate>Sun, 15 Jan 2023 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/post-1/</guid>
+      <description>&lt;p&gt;Tempor proident minim aliquip reprehenderit dolor et ad anim Lorem duis sint eiusmod. Labore ut ea duis dolor. Incididunt consectetur proident qui occaecat incididunt do nisi Lorem. Tempor do laborum elit laboris excepteur eiusmod do. Eiusmod nisi excepteur ut amet pariatur adipisicing Lorem.&lt;/p&gt;&#xA;&lt;p&gt;Occaecat nulla excepteur dolore excepteur duis eiusmod ullamco officia anim in voluptate ea occaecat officia. Cillum sint esse velit ea officia minim fugiat. Elit ea esse id aliquip pariatur cupidatat id duis minim incididunt ea ea. Anim ut duis sunt nisi. Culpa cillum sit voluptate voluptate eiusmod dolor. Enim nisi Lorem ipsum irure est excepteur voluptate eu in enim nisi. Nostrud ipsum Lorem anim sint labore consequat do.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
